@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://redivious.github.io/blog/about/index.html</loc>
+    
+    <lastmod>2019-11-02T13:40:37.578Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://redivious.github.io/blog/2019/11/02/hello-world/</loc>
     
     <lastmod>2019-11-02T09:34:16.708Z</lastmod>
