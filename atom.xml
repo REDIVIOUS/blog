@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://REDIVIOUS.github.io/blog/"/>
-  <updated>2019-11-18T13:09:23.537Z</updated>
+  <updated>2019-11-18T12:57:26.070Z</updated>
   <id>https://REDIVIOUS.github.io/blog/</id>
   
   <author>
@@ -15,35 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>hexo博客安装与利用hexo写文章</title>
-    <link href="https://REDIVIOUS.github.io/blog/2019/11/18/hexo%E5%8D%9A%E5%AE%A2%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%A9%E7%94%A8hexo%E5%86%99%E6%96%87%E7%AB%A0/"/>
-    <id>https://REDIVIOUS.github.io/blog/2019/11/18/hexo博客安装与利用hexo写文章/</id>
-    <published>2019-11-18T12:52:39.000Z</published>
-    <updated>2019-11-18T13:09:23.537Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="搭建hexo博客并用hexo写文章"><a href="#搭建hexo博客并用hexo写文章" class="headerlink" title="搭建hexo博客并用hexo写文章"></a>搭建hexo博客并用hexo写文章</h1><!-- TOC --><ul><li><a href="#搭建hexo博客并用hexo写文章">搭建hexo博客并用hexo写文章</a></li><li><a href="#1-利用github和hexo搭建博客">1 利用github和hexo搭建博客</a><ul><li><a href="#11-搭建步骤概述">1.1 搭建步骤概述</a></li><li><a href="#12-可供参考的安装和配置hexo的博文">1.2 可供参考的安装和配置hexo的博文</a></li></ul></li><li><a href="#2-把hexo博客搭载到域名子目录">2 把hexo博客搭载到域名子目录</a></li><li><a href="#3-hexo编写和发布文章">3 hexo编写和发布文章</a><ul><li><a href="#31-markdown文件的书写">3.1 markdown文件的书写</a></li><li><a href="#32-关于用hexo发布博客">3.2 关于用hexo发布博客</a></li></ul></li></ul><!-- /TOC --><h1 id="1-利用github和hexo搭建博客"><a href="#1-利用github和hexo搭建博客" class="headerlink" title="1 利用github和hexo搭建博客"></a>1 利用github和hexo搭建博客</h1><h2 id="1-1-搭建步骤概述"><a href="#1-1-搭建步骤概述" class="headerlink" title="1.1 搭建步骤概述"></a>1.1 搭建步骤概述</h2><ol><li>本地安装（命令行安装）git、nodejs、hexo。创建本地blog文件夹，执行hexo init。</li><li>注册github账号（如果没有注册）、github创建新项目，用于保存你的hexo博客。（若还没在本地配置账号信息和ssh，也需要创建）</li><li>在本地文件夹，修改<code>_config.yml</code>的一些配置，首先要指向你的github仓库，然后生成博客。可以利用.io域名访问</li><li>如果要绑定个人域名，添加一条DNS记录即可。</li><li>然后可以配置主题，主题官网在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo主题配置</a></li><li>可以修改和安装一些设置</li></ol><h2 id="1-2-可供参考的安装和配置hexo的博文"><a href="#1-2-可供参考的安装和配置hexo的博文" class="headerlink" title="1.2 可供参考的安装和配置hexo的博文"></a>1.2 可供参考的安装和配置hexo的博文</h2><ol><li><a href="https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html</a></li><li><a href="https://www.cnblogs.com/visugar/p/6821777.html" target="_blank" rel="noopener">https://www.cnblogs.com/visugar/p/6821777.html</a></li></ol><h1 id="2-把hexo博客搭载到域名子目录"><a href="#2-把hexo博客搭载到域名子目录" class="headerlink" title="2 把hexo博客搭载到域名子目录"></a>2 把hexo博客搭载到域名子目录</h1><ul><li>主要参考的是以下的博客：<a href="https://www.jianshu.com/p/18356b0a7494" target="_blank" rel="noopener">https://www.jianshu.com/p/18356b0a7494</a><br>直接看：<code>三、操作步骤</code> 修改即可（前提是你上一步的搭建过程该有的配置已经完成）</li></ul><h1 id="3-hexo编写和发布文章"><a href="#3-hexo编写和发布文章" class="headerlink" title="3 hexo编写和发布文章"></a>3 hexo编写和发布文章</h1><h2 id="3-1-markdown文件的书写"><a href="#3-1-markdown文件的书写" class="headerlink" title="3.1 markdown文件的书写"></a>3.1 markdown文件的书写</h2><p>hexo主要是用markdown进行书写，下面归纳整理了一些markdown书写过程中的一些常用功能的查找手册以及问题的解决方法：</p><ul><li>关于markdown的整体格式和页面书写书写可以参考以下教程：<a href="https://www.runoob.com/markdown/md-tutorial.html" target="_blank" rel="noopener">markdown教程</a></li><li>markdown公式大全参考：<a href="https://www.jianshu.com/p/25f0139637b7" target="_blank" rel="noopener">https://www.jianshu.com/p/25f0139637b7</a>  </li><li>为md文件生成toc目录，这里我们以在VScode上编写markdown文本为例：<a href="https://www.jianshu.com/p/4721ddd27027" target="_blank" rel="noopener">https://www.jianshu.com/p/4721ddd27027</a><ul><li>VScode自动生成目录时有可能遇到换行不对的问题，参考以下网址解决即可：<a href="https://jingyan.baidu.com/article/6b97984df62b501ca3b0bf7a.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/6b97984df62b501ca3b0bf7a.html</a></li><li>本地md生成了toc目录之后，传到github上之后，该md文件也能正常显示目录，不用再下载任何插件。（由于网上有些人说github上面不支持toc目录，这里澄清一下，并不用额外安装插件，只用在本地安装toc支持并能正常显示目录，在github上面也能正常显示）</li><li>hexo支持toc自动生成目录，可以参考以下博文配置：<a href="https://www.jianshu.com/p/87a885fef1a6" target="_blank" rel="noopener">https://www.jianshu.com/p/87a885fef1a6</a><h2 id="3-2-关于用hexo发布博客"><a href="#3-2-关于用hexo发布博客" class="headerlink" title="3.2 关于用hexo发布博客"></a>3.2 关于用hexo发布博客</h2></li></ul></li><li>文章发布见如下步骤：<ul><li>在主目录下，输入<code>hexo new post &quot;文章名&quot;</code>或者<code>hexo new “文章名”</code>,都会在<code>source/_posts/</code>中多出一个.md文件（命令行也会提示你这里多出来一个.md文件），编写这个md文件即可。</li><li>打开这个md文件，你会看到要你填写title、date、tags。其中title和date已经自动生成好了(你也可以改)，你只需要填写tag（标签）即可。当然你可也以自己添加其他属性，比如comment（是否可以评论）、toc（是否显示文章目录）、categories（文章分类）。给出一个完整的文章接本设置的代码如下：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 你的文章的title</span><br><span class="line">date: yy-mm-dd hh:mm:ss</span><br><span class="line">comments: true #是否可评论</span><br><span class="line">toc: true #是否显示文章目录</span><br><span class="line">categories: &quot;云服务器&quot; #分类</span><br><span class="line">tags:   #标签</span><br><span class="line"> - centOS</span><br><span class="line"> - tomcat</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li><li>编写好文件之后，用<code>hexo clean</code>；<code>hexo g</code>；<code>hexo d</code> 这三条命令，将你所编写的文件放到你的博客上</li></ul></li></ul><p>有关hexo博客的一些关键结构和文件，我想作出一些说明，方便后续进行博客的整理归纳和有序发布</p><ul><li>关于hexo的有几个概念需要了解：标签、分类、归档，下面简单介绍一下：<ul><li>标签： </li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;搭建hexo博客并用hexo写文章&quot;&gt;&lt;a href=&quot;#搭建hexo博客并用hexo写文章&quot; class=&quot;headerlink&quot; title=&quot;搭建hexo博客并用hexo写文章&quot;&gt;&lt;/a&gt;搭建hexo博客并用hexo写文章&lt;/h1&gt;&lt;!-- TOC --&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="hexo搭建属于自己的博客" scheme="https://REDIVIOUS.github.io/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
-    
-    
-      <category term="hexo相关技术" scheme="https://REDIVIOUS.github.io/blog/tags/hexo%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="markdown的使用" scheme="https://REDIVIOUS.github.io/blog/tags/markdown%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    
-  </entry>
   
   <entry>
     <title>hexo博客安装与利用hexo写文章</title>
@@ -64,6 +35,35 @@
     </summary>
     
     
+    
+  </entry>
+  
+  <entry>
+    <title>hexo博客安装与利用hexo写文章</title>
+    <link href="https://REDIVIOUS.github.io/blog/2019/11/18/hexo%E5%8D%9A%E5%AE%A2%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%A9%E7%94%A8hexo%E5%86%99%E6%96%87%E7%AB%A0/"/>
+    <id>https://REDIVIOUS.github.io/blog/2019/11/18/hexo博客安装与利用hexo写文章/</id>
+    <published>2019-11-18T12:52:39.000Z</published>
+    <updated>2019-11-18T13:16:43.930Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="搭建hexo博客并用hexo写文章"><a href="#搭建hexo博客并用hexo写文章" class="headerlink" title="搭建hexo博客并用hexo写文章"></a>搭建hexo博客并用hexo写文章</h1><!-- TOC --><ul><li><a href="#搭建hexo博客并用hexo写文章">搭建hexo博客并用hexo写文章</a></li><li><a href="#1-利用github和hexo搭建博客">1 利用github和hexo搭建博客</a><ul><li><a href="#11-搭建步骤概述">1.1 搭建步骤概述</a></li><li><a href="#12-可供参考的安装和配置hexo的博文">1.2 可供参考的安装和配置hexo的博文</a></li></ul></li><li><a href="#2-把hexo博客搭载到域名子目录">2 把hexo博客搭载到域名子目录</a></li><li><a href="#3-hexo编写和发布文章">3 hexo编写和发布文章</a><ul><li><a href="#31-markdown文件的书写">3.1 markdown文件的书写</a></li><li><a href="#32-关于用hexo发布博客">3.2 关于用hexo发布博客</a></li></ul></li></ul><!-- /TOC --><h1 id="1-利用github和hexo搭建博客"><a href="#1-利用github和hexo搭建博客" class="headerlink" title="1 利用github和hexo搭建博客"></a>1 利用github和hexo搭建博客</h1><h2 id="1-1-搭建步骤概述"><a href="#1-1-搭建步骤概述" class="headerlink" title="1.1 搭建步骤概述"></a>1.1 搭建步骤概述</h2><ol><li>本地安装（命令行安装）git、nodejs、hexo。创建本地blog文件夹，执行hexo init。</li><li>注册github账号（如果没有注册）、github创建新项目，用于保存你的hexo博客。（若还没在本地配置账号信息和ssh，也需要创建）</li><li>在本地文件夹，修改<code>_config.yml</code>的一些配置，首先要指向你的github仓库，然后生成博客。可以利用.io域名访问</li><li>如果要绑定个人域名，添加一条DNS记录即可。</li><li>然后可以配置主题，主题官网在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo主题配置</a></li><li>可以修改和安装一些设置</li></ol><h2 id="1-2-可供参考的安装和配置hexo的博文"><a href="#1-2-可供参考的安装和配置hexo的博文" class="headerlink" title="1.2 可供参考的安装和配置hexo的博文"></a>1.2 可供参考的安装和配置hexo的博文</h2><ol><li><a href="https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html</a></li><li><a href="https://www.cnblogs.com/visugar/p/6821777.html" target="_blank" rel="noopener">https://www.cnblogs.com/visugar/p/6821777.html</a></li></ol><h1 id="2-把hexo博客搭载到域名子目录"><a href="#2-把hexo博客搭载到域名子目录" class="headerlink" title="2 把hexo博客搭载到域名子目录"></a>2 把hexo博客搭载到域名子目录</h1><ul><li>主要参考的是以下的博客：<a href="https://www.jianshu.com/p/18356b0a7494" target="_blank" rel="noopener">https://www.jianshu.com/p/18356b0a7494</a><br>直接看：<code>三、操作步骤</code> 修改即可（前提是你上一步的搭建过程该有的配置已经完成）</li></ul><h1 id="3-hexo编写和发布文章"><a href="#3-hexo编写和发布文章" class="headerlink" title="3 hexo编写和发布文章"></a>3 hexo编写和发布文章</h1><h2 id="3-1-markdown文件的书写"><a href="#3-1-markdown文件的书写" class="headerlink" title="3.1 markdown文件的书写"></a>3.1 markdown文件的书写</h2><p>hexo主要是用markdown进行书写，下面归纳整理了一些markdown书写过程中的一些常用功能的查找手册以及问题的解决方法：</p><ul><li>关于markdown的整体格式和页面书写书写可以参考以下教程：<a href="https://www.runoob.com/markdown/md-tutorial.html" target="_blank" rel="noopener">markdown教程</a></li><li>markdown公式大全参考：<a href="https://www.jianshu.com/p/25f0139637b7" target="_blank" rel="noopener">https://www.jianshu.com/p/25f0139637b7</a>  </li><li>为md文件生成toc目录，这里我们以在VScode上编写markdown文本为例：<a href="https://www.jianshu.com/p/4721ddd27027" target="_blank" rel="noopener">https://www.jianshu.com/p/4721ddd27027</a><ul><li>VScode自动生成目录时有可能遇到换行不对的问题，参考以下网址解决即可：<a href="https://jingyan.baidu.com/article/6b97984df62b501ca3b0bf7a.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/6b97984df62b501ca3b0bf7a.html</a></li><li>本地md生成了toc目录之后，传到github上之后，该md文件也能正常显示目录，不用再下载任何插件。（由于网上有些人说github上面不支持toc目录，这里澄清一下，并不用额外安装插件，只用在本地安装toc支持并能正常显示目录，在github上面也能正常显示）</li><li>hexo支持toc自动生成目录，可以参考以下博文配置：<a href="https://www.jianshu.com/p/87a885fef1a6" target="_blank" rel="noopener">https://www.jianshu.com/p/87a885fef1a6</a>  </li></ul></li></ul><h2 id="3-2-关于用hexo发布博客"><a href="#3-2-关于用hexo发布博客" class="headerlink" title="3.2 关于用hexo发布博客"></a>3.2 关于用hexo发布博客</h2><ul><li>文章发布见如下步骤：<ul><li>在主目录下，输入<code>hexo new post &quot;文章名&quot;</code>或者<code>hexo new “文章名”</code>,都会在<code>source/_posts/</code>中多出一个.md文件（命令行也会提示你这里多出来一个.md文件），编写这个md文件即可。</li><li>打开这个md文件，你会看到要你填写title、date、tags。其中title和date已经自动生成好了(你也可以改)，你只需要填写tag（标签）即可。当然你可也以自己添加其他属性，比如comment（是否可以评论）、toc（是否显示文章目录）、categories（文章分类）。给出一个完整的文章接本设置的代码如下：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 你的文章的title</span><br><span class="line">date: yy-mm-dd hh:mm:ss</span><br><span class="line">comments: true #是否可评论</span><br><span class="line">toc: true #是否显示文章目录</span><br><span class="line">categories: &quot;云服务器&quot; #分类</span><br><span class="line">tags:   #标签</span><br><span class="line">    - centOS</span><br><span class="line">    - tomcat</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li><li>编写好文件之后，用<code>hexo clean</code>；<code>hexo g</code>；<code>hexo d</code> 这三条命令，将你所编写的文件放到你的博客上</li></ul></li></ul><p>有关hexo博客的一些关键结构和文件，我想作出一些说明，方便后续进行博客的整理归纳和有序发布</p><ul><li>关于hexo的有几个概念需要了解：标签、分类、归档，下面简单介绍一下：<ul><li>标签： </li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;搭建hexo博客并用hexo写文章&quot;&gt;&lt;a href=&quot;#搭建hexo博客并用hexo写文章&quot; class=&quot;headerlink&quot; title=&quot;搭建hexo博客并用hexo写文章&quot;&gt;&lt;/a&gt;搭建hexo博客并用hexo写文章&lt;/h1&gt;&lt;!-- TOC --&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="hexo搭建属于自己的博客" scheme="https://REDIVIOUS.github.io/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="hexo相关技术" scheme="https://REDIVIOUS.github.io/blog/tags/hexo%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="markdown的使用" scheme="https://REDIVIOUS.github.io/blog/tags/markdown%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     
   </entry>
   
