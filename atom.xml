@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="www.waylonding.cn/blog/"/>
-  <updated>2019-11-19T08:25:46.629Z</updated>
+  <updated>2019-11-19T10:41:14.679Z</updated>
   <id>www.waylonding.cn/blog/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>OpeartingSystem Notes</title>
+    <link href="www.waylonding.cn/blog/2019/11/19/OpeartingSystem-Notes/"/>
+    <id>www.waylonding.cn/blog/2019/11/19/OpeartingSystem-Notes/</id>
+    <published>2019-11-19T08:29:13.000Z</published>
+    <updated>2019-11-19T10:41:14.679Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="计算机操作系统学习-amp-复习笔记"><a href="#计算机操作系统学习-amp-复习笔记" class="headerlink" title="计算机操作系统学习&amp;复习笔记"></a>计算机操作系统学习&amp;复习笔记</h2><p>参考书目：计算机操作系统（人民邮电出版社）</p><h3 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h3><h4 id="1-1-操作系统在计算机中的地位"><a href="#1-1-操作系统在计算机中的地位" class="headerlink" title="1.1 操作系统在计算机中的地位 *"></a>1.1 操作系统在计算机中的地位 *</h4><ul><li>操作系统是什么；<ul><li>是核心软件</li><li>负责软件硬件资源分配与调用</li><li>控制、协调并发活动</li><li>提供用户接口、为用户良好工作环境</li></ul></li><li>操作系统特点<br>位置：从里到往外裸机-&gt;操作系统-&gt;应用软件<ul><li>内容庞杂、涉及面广<ul><li>控制管理硬件、软件；控制程序进行</li><li>为用户提供良好接口</li></ul></li><li>实践性强</li><li>技术发展快<br>Unix和linux采取优先调度。<br>linux调度方法：140队列，140位位图，扫描位图（不怎么需要时间），高优先级入列</li></ul></li><li>OS和各层次的关系<ul><li>硬件：控制CPU、访问存储、驱动设备、中断</li><li>软件：控制管理、提供界面和服务</li></ul></li><li>各层次对OS的影响<ul><li>硬件约束：用串行（CPU）实现并行（操作系统）</li><li>上层用户需求：实时和分时，界面友好</li></ul></li></ul><h4 id="1-5-操作系统采用的技术"><a href="#1-5-操作系统采用的技术" class="headerlink" title="1.5 操作系统采用的技术 *"></a>1.5 操作系统采用的技术 *</h4><ul><li>并行处理技术<ul><li>并行处理：多个部件、为整体任务同时执行。</li><li>多用户、多任务同时执行。<br>为描述任务，引入进程的概念。进程的状态及控制（任务状态）、进程同步与互斥（多任务协调）、进程调度（CPU控制权的分配等等）</li><li>系统资源共享<br>处理机共享（处理机分配调度）、存储器共享（存储分配、保护、虚拟存储与地址映射）、设备共享（设备分配驱动以及中断）、信息共享（文件结构、共享以及存取方法）</li></ul></li><li>虚拟技术<ul><li>用户：逻辑视图。操作系统：物理视图。</li><li>物理（硬件）资源（系统）：CPU、主存、打印机、磁盘等。</li><li>逻辑（软件）资源（用户）：CPU1、CPU2（CPU分时）；虚拟主存1、虚拟主存2（主存的主存管理）；打印机1、打印机2（虚拟打印技术）（网络上有很多资源需要打印机）</li></ul></li></ul><h3 id="第二章-操作系统的结构和硬件支持"><a href="#第二章-操作系统的结构和硬件支持" class="headerlink" title="第二章 操作系统的结构和硬件支持"></a>第二章 操作系统的结构和硬件支持</h3><h4 id="2-3-处理机的态"><a href="#2-3-处理机的态" class="headerlink" title="2.3 处理机的态 *"></a>2.3 处理机的态 *</h4><ul><li>系统中两类程序：管理程序和用户程序：<ul><li>管理程序：管理系统资源、控制程序运行</li><li>用户程序: 使用资源、提出申请；被控制</li></ul></li><li>区分处理机状态的目的是为了保护操作系统。不保护就有可能瘫痪。</li><li>处理机的态：中央处理机的工作状态（取决于当前处理机运行的程序）<ul><li>管态：管理程序执行的态。称特权级。使用全部指令和资源。<ul><li>有的细分为核心态和管态</li></ul></li><li>用户态：用户程序执行的态。只允许访问自己的存储区域，禁止特权指令，不能直接取用资源与改变机器的态。</li></ul></li><li>管态和用户态区别：<ul><li>管态<ul><li>操作系统程序执行</li><li>使用全部指令</li><li>使用全部系统资源（包括整个存储空间）</li></ul></li><li>用户态<ul><li>用户程序执行</li><li>禁用特权指令</li><li>只允许用户程序访问自己的存储区域</li></ul></li><li>特权指令集<ul><li>涉及到外部设备的输入/输出命令</li><li>修改特殊寄存器的指令</li><li>改变机器状态的指令</li></ul></li></ul></li><li>实现处理机分态的硬件支持<ul><li>在状态寄存器中设置状态位：<ul><li>一位：用户态、管态</li><li>两位：核态、管态、用户态<ul><li>核态和管态都是操作系统程序执行时处理机的状态。核态：操作系统核心程序执行时的状态，权限比管态高，可以执行所有机器指令（改变机器状态）。</li></ul></li><li>Unix（linux）系统中状态的分类<ul><li>00-核态；01-管态；11-用户态</li></ul></li><li>80x86微处理器中状态位：（CPU特权级）DPL=0（核态）；DPL=3（用户态）</li></ul></li><li>程序性中断<ul><li>程序有越权操作时候发生的中断称为程序性中断。</li><li>中断机制负责使其陷入操作系统，用户态转换为管态，操作系统管理程序获得控制权开始执行。</li></ul></li><li>什么时候中断<br>用户态下超出了权限时保护操作系统：<ul><li>当用户执行了一条特权指令</li><li>当用户程序试图访问<code>操作系统数据区</code>或<code>其他程序占用的区域</code>时。</li></ul></li><li></li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;计算机操作系统学习-amp-复习笔记&quot;&gt;&lt;a href=&quot;#计算机操作系统学习-amp-复习笔记&quot; class=&quot;headerlink&quot; title=&quot;计算机操作系统学习&amp;amp;复习笔记&quot;&gt;&lt;/a&gt;计算机操作系统学习&amp;amp;复习笔记&lt;/h2&gt;&lt;p&gt;参考书目：计
+      
+    
+    </summary>
+    
+    
+      <category term="CS Courses" scheme="www.waylonding.cn/blog/categories/CS-Courses/"/>
+    
+    
+      <category term="Operating System" scheme="www.waylonding.cn/blog/tags/Operating-System/"/>
+    
+      <category term="System &amp; Network" scheme="www.waylonding.cn/blog/tags/System-Network/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ComputerNetwork Notes.md</title>
     <link href="www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes-md/"/>
     <id>www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes-md/</id>
     <published>2019-11-19T08:13:01.000Z</published>
-    <updated>2019-11-19T08:25:46.629Z</updated>
+    <updated>2019-11-19T08:50:31.663Z</updated>
     
     <content type="html"><![CDATA[<h2 id="计算机网络-自顶向下-学习笔记-amp-计算机通信与网络课程复习"><a href="#计算机网络-自顶向下-学习笔记-amp-计算机通信与网络课程复习" class="headerlink" title="计算机网络-自顶向下 学习笔记 &amp; 计算机通信与网络课程复习"></a>计算机网络-自顶向下 学习笔记 &amp; 计算机通信与网络课程复习</h2><p>参考书目：计算机网络-自顶向下方法（原书第7版）</p><h3 id="第1章-计算机网络和因特网"><a href="#第1章-计算机网络和因特网" class="headerlink" title="第1章    计算机网络和因特网"></a>第1章    计算机网络和因特网</h3><h4 id="1-1-什么是因特网"><a href="#1-1-什么是因特网" class="headerlink" title="1.1    什么是因特网"></a>1.1    什么是因特网</h4><h4 id="1-2-网络边缘"><a href="#1-2-网络边缘" class="headerlink" title="1.2    网络边缘"></a>1.2    网络边缘</h4><h4 id="1-3-网络核心"><a href="#1-3-网络核心" class="headerlink" title="1.3    网络核心"></a>1.3    网络核心</h4><h4 id="1-4-分组交换网中的时延、丢包和吞吐量"><a href="#1-4-分组交换网中的时延、丢包和吞吐量" class="headerlink" title="1.4    分组交换网中的时延、丢包和吞吐量"></a>1.4    分组交换网中的时延、丢包和吞吐量</h4><h4 id="1-5-协议层次及服务模型"><a href="#1-5-协议层次及服务模型" class="headerlink" title="1.5    协议层次及服务模型"></a>1.5    协议层次及服务模型</h4><h3 id="第2章-应用层"><a href="#第2章-应用层" class="headerlink" title="第2章    应用层"></a>第2章    应用层</h3><h4 id="2-1-应用层协议原理"><a href="#2-1-应用层协议原理" class="headerlink" title="2.1 应用层协议原理"></a>2.1 应用层协议原理</h4><h4 id="2-2-Web和HTTP"><a href="#2-2-Web和HTTP" class="headerlink" title="2.2 Web和HTTP"></a>2.2 Web和HTTP</h4><h4 id="2-3-因特网中的电子邮件"><a href="#2-3-因特网中的电子邮件" class="headerlink" title="2.3 因特网中的电子邮件"></a>2.3 因特网中的电子邮件</h4><h4 id="2-4-DNS：因特网的目录服务"><a href="#2-4-DNS：因特网的目录服务" class="headerlink" title="2.4 DNS：因特网的目录服务"></a>2.4 DNS：因特网的目录服务</h4><h4 id="2-5-P2P文件分发"><a href="#2-5-P2P文件分发" class="headerlink" title="2.5 P2P文件分发"></a>2.5 P2P文件分发</h4><h3 id="第3章-运输层"><a href="#第3章-运输层" class="headerlink" title="第3章    运输层"></a>第3章    运输层</h3><h4 id="3-1-概述和运输层服务"><a href="#3-1-概述和运输层服务" class="headerlink" title="3.1 概述和运输层服务"></a>3.1 概述和运输层服务</h4><h4 id="3-2-多路复用与多路分解"><a href="#3-2-多路复用与多路分解" class="headerlink" title="3.2 多路复用与多路分解"></a>3.2 多路复用与多路分解</h4><h4 id="3-3-无连接运输：UDP"><a href="#3-3-无连接运输：UDP" class="headerlink" title="3.3 无连接运输：UDP"></a>3.3 无连接运输：UDP</h4><h4 id="3-4-可靠数据传输原理"><a href="#3-4-可靠数据传输原理" class="headerlink" title="3.4 可靠数据传输原理"></a>3.4 可靠数据传输原理</h4><h4 id="3-5-面向连接的运输：TCP"><a href="#3-5-面向连接的运输：TCP" class="headerlink" title="3.5 面向连接的运输：TCP"></a>3.5 面向连接的运输：TCP</h4><h4 id="3-6-拥塞控制原理"><a href="#3-6-拥塞控制原理" class="headerlink" title="3.6 拥塞控制原理"></a>3.6 拥塞控制原理</h4><h4 id="3-7-TCP拥塞控制"><a href="#3-7-TCP拥塞控制" class="headerlink" title="3.7 TCP拥塞控制"></a>3.7 TCP拥塞控制</h4><h3 id="第4章-网络层：数据平面"><a href="#第4章-网络层：数据平面" class="headerlink" title="第4章    网络层：数据平面"></a>第4章    网络层：数据平面</h3><h4 id="4-1-网络层概述"><a href="#4-1-网络层概述" class="headerlink" title="4.1 网络层概述"></a>4.1 网络层概述</h4><h4 id="4-2-路由器工作原理"><a href="#4-2-路由器工作原理" class="headerlink" title="4.2 路由器工作原理"></a>4.2 路由器工作原理</h4><h4 id="4-3-网际协议：IPv4、寻址、IPv6及其他"><a href="#4-3-网际协议：IPv4、寻址、IPv6及其他" class="headerlink" title="4.3 网际协议：IPv4、寻址、IPv6及其他"></a>4.3 网际协议：IPv4、寻址、IPv6及其他</h4><h3 id="第5章-网络层：控制平面"><a href="#第5章-网络层：控制平面" class="headerlink" title="第5章    网络层：控制平面"></a>第5章    网络层：控制平面</h3><h4 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1 概述"></a>5.1 概述</h4><h4 id="5-2-路由选择算法"><a href="#5-2-路由选择算法" class="headerlink" title="5.2 路由选择算法"></a>5.2 路由选择算法</h4><h4 id="5-3-因特网中自治系统内部的路由选择：OSPF"><a href="#5-3-因特网中自治系统内部的路由选择：OSPF" class="headerlink" title="5.3 因特网中自治系统内部的路由选择：OSPF"></a>5.3 因特网中自治系统内部的路由选择：OSPF</h4><h4 id="5-4-ISP之间的路由选择：BGP"><a href="#5-4-ISP之间的路由选择：BGP" class="headerlink" title="5.4 ISP之间的路由选择：BGP"></a>5.4 ISP之间的路由选择：BGP</h4><h4 id="5-6-ICMP：因特网控制报文协议"><a href="#5-6-ICMP：因特网控制报文协议" class="headerlink" title="5.6 ICMP：因特网控制报文协议"></a>5.6 ICMP：因特网控制报文协议</h4><h3 id="第6章-链路层和局域网"><a href="#第6章-链路层和局域网" class="headerlink" title="第6章    链路层和局域网"></a>第6章    链路层和局域网</h3><h4 id="6-1-链路层概述"><a href="#6-1-链路层概述" class="headerlink" title="6.1 链路层概述"></a>6.1 链路层概述</h4><h4 id="6-2-差错检测和纠正技术"><a href="#6-2-差错检测和纠正技术" class="headerlink" title="6.2 差错检测和纠正技术"></a>6.2 差错检测和纠正技术</h4><h4 id="6-3-多路访问链路协议"><a href="#6-3-多路访问链路协议" class="headerlink" title="6.3 多路访问链路协议"></a>6.3 多路访问链路协议</h4><h4 id="6-4-交换局域网"><a href="#6-4-交换局域网" class="headerlink" title="6.4 交换局域网"></a>6.4 交换局域网</h4><h4 id="6-7-回顾：Web页面请求的历程"><a href="#6-7-回顾：Web页面请求的历程" class="headerlink" title="6.7 回顾：Web页面请求的历程"></a>6.7 回顾：Web页面请求的历程</h4><h3 id="第7章-无线网络和移动网络"><a href="#第7章-无线网络和移动网络" class="headerlink" title="第7章    无线网络和移动网络"></a>第7章    无线网络和移动网络</h3><h4 id="7-1-概述"><a href="#7-1-概述" class="headerlink" title="7.1 概述"></a>7.1 概述</h4><h4 id="7-2-无线链路和网络特征"><a href="#7-2-无线链路和网络特征" class="headerlink" title="7.2 无线链路和网络特征"></a>7.2 无线链路和网络特征</h4><h4 id="7-3-WiFi：802-11无线LAN"><a href="#7-3-WiFi：802-11无线LAN" class="headerlink" title="7.3 WiFi：802.11无线LAN"></a>7.3 WiFi：802.11无线LAN</h4>]]></content>
     
@@ -35,12 +63,12 @@
     </summary>
     
     
-      <category term="CS course in HUST" scheme="www.waylonding.cn/blog/categories/CS-course-in-HUST/"/>
+      <category term="CS courses" scheme="www.waylonding.cn/blog/categories/CS-courses/"/>
     
+    
+      <category term="System &amp; Network" scheme="www.waylonding.cn/blog/tags/System-Network/"/>
     
       <category term="Computer Network" scheme="www.waylonding.cn/blog/tags/Computer-Network/"/>
-    
-      <category term="system &amp; Network" scheme="www.waylonding.cn/blog/tags/system-Network/"/>
     
   </entry>
   
