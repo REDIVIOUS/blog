@@ -49,9 +49,9 @@
     <link href="www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes/"/>
     <id>www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes/</id>
     <published>2019-11-19T08:13:01.000Z</published>
-    <updated>2019-11-19T08:50:31.663Z</updated>
+    <updated>2019-11-19T10:44:09.822Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="计算机网络-自顶向下-学习笔记-amp-计算机通信与网络课程复习"><a href="#计算机网络-自顶向下-学习笔记-amp-计算机通信与网络课程复习" class="headerlink" title="计算机网络-自顶向下 学习笔记 &amp; 计算机通信与网络课程复习"></a>计算机网络-自顶向下 学习笔记 &amp; 计算机通信与网络课程复习</h2><p>参考书目：计算机网络-自顶向下方法（原书第7版）</p><h3 id="第1章-计算机网络和因特网"><a href="#第1章-计算机网络和因特网" class="headerlink" title="第1章    计算机网络和因特网"></a>第1章    计算机网络和因特网</h3><h4 id="1-1-什么是因特网"><a href="#1-1-什么是因特网" class="headerlink" title="1.1    什么是因特网"></a>1.1    什么是因特网</h4><h4 id="1-2-网络边缘"><a href="#1-2-网络边缘" class="headerlink" title="1.2    网络边缘"></a>1.2    网络边缘</h4><h4 id="1-3-网络核心"><a href="#1-3-网络核心" class="headerlink" title="1.3    网络核心"></a>1.3    网络核心</h4><h4 id="1-4-分组交换网中的时延、丢包和吞吐量"><a href="#1-4-分组交换网中的时延、丢包和吞吐量" class="headerlink" title="1.4    分组交换网中的时延、丢包和吞吐量"></a>1.4    分组交换网中的时延、丢包和吞吐量</h4><h4 id="1-5-协议层次及服务模型"><a href="#1-5-协议层次及服务模型" class="headerlink" title="1.5    协议层次及服务模型"></a>1.5    协议层次及服务模型</h4><h3 id="第2章-应用层"><a href="#第2章-应用层" class="headerlink" title="第2章    应用层"></a>第2章    应用层</h3><h4 id="2-1-应用层协议原理"><a href="#2-1-应用层协议原理" class="headerlink" title="2.1 应用层协议原理"></a>2.1 应用层协议原理</h4><h4 id="2-2-Web和HTTP"><a href="#2-2-Web和HTTP" class="headerlink" title="2.2 Web和HTTP"></a>2.2 Web和HTTP</h4><h4 id="2-3-因特网中的电子邮件"><a href="#2-3-因特网中的电子邮件" class="headerlink" title="2.3 因特网中的电子邮件"></a>2.3 因特网中的电子邮件</h4><h4 id="2-4-DNS：因特网的目录服务"><a href="#2-4-DNS：因特网的目录服务" class="headerlink" title="2.4 DNS：因特网的目录服务"></a>2.4 DNS：因特网的目录服务</h4><h4 id="2-5-P2P文件分发"><a href="#2-5-P2P文件分发" class="headerlink" title="2.5 P2P文件分发"></a>2.5 P2P文件分发</h4><h3 id="第3章-运输层"><a href="#第3章-运输层" class="headerlink" title="第3章    运输层"></a>第3章    运输层</h3><h4 id="3-1-概述和运输层服务"><a href="#3-1-概述和运输层服务" class="headerlink" title="3.1 概述和运输层服务"></a>3.1 概述和运输层服务</h4><h4 id="3-2-多路复用与多路分解"><a href="#3-2-多路复用与多路分解" class="headerlink" title="3.2 多路复用与多路分解"></a>3.2 多路复用与多路分解</h4><h4 id="3-3-无连接运输：UDP"><a href="#3-3-无连接运输：UDP" class="headerlink" title="3.3 无连接运输：UDP"></a>3.3 无连接运输：UDP</h4><h4 id="3-4-可靠数据传输原理"><a href="#3-4-可靠数据传输原理" class="headerlink" title="3.4 可靠数据传输原理"></a>3.4 可靠数据传输原理</h4><h4 id="3-5-面向连接的运输：TCP"><a href="#3-5-面向连接的运输：TCP" class="headerlink" title="3.5 面向连接的运输：TCP"></a>3.5 面向连接的运输：TCP</h4><h4 id="3-6-拥塞控制原理"><a href="#3-6-拥塞控制原理" class="headerlink" title="3.6 拥塞控制原理"></a>3.6 拥塞控制原理</h4><h4 id="3-7-TCP拥塞控制"><a href="#3-7-TCP拥塞控制" class="headerlink" title="3.7 TCP拥塞控制"></a>3.7 TCP拥塞控制</h4><h3 id="第4章-网络层：数据平面"><a href="#第4章-网络层：数据平面" class="headerlink" title="第4章    网络层：数据平面"></a>第4章    网络层：数据平面</h3><h4 id="4-1-网络层概述"><a href="#4-1-网络层概述" class="headerlink" title="4.1 网络层概述"></a>4.1 网络层概述</h4><h4 id="4-2-路由器工作原理"><a href="#4-2-路由器工作原理" class="headerlink" title="4.2 路由器工作原理"></a>4.2 路由器工作原理</h4><h4 id="4-3-网际协议：IPv4、寻址、IPv6及其他"><a href="#4-3-网际协议：IPv4、寻址、IPv6及其他" class="headerlink" title="4.3 网际协议：IPv4、寻址、IPv6及其他"></a>4.3 网际协议：IPv4、寻址、IPv6及其他</h4><h3 id="第5章-网络层：控制平面"><a href="#第5章-网络层：控制平面" class="headerlink" title="第5章    网络层：控制平面"></a>第5章    网络层：控制平面</h3><h4 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1 概述"></a>5.1 概述</h4><h4 id="5-2-路由选择算法"><a href="#5-2-路由选择算法" class="headerlink" title="5.2 路由选择算法"></a>5.2 路由选择算法</h4><h4 id="5-3-因特网中自治系统内部的路由选择：OSPF"><a href="#5-3-因特网中自治系统内部的路由选择：OSPF" class="headerlink" title="5.3 因特网中自治系统内部的路由选择：OSPF"></a>5.3 因特网中自治系统内部的路由选择：OSPF</h4><h4 id="5-4-ISP之间的路由选择：BGP"><a href="#5-4-ISP之间的路由选择：BGP" class="headerlink" title="5.4 ISP之间的路由选择：BGP"></a>5.4 ISP之间的路由选择：BGP</h4><h4 id="5-6-ICMP：因特网控制报文协议"><a href="#5-6-ICMP：因特网控制报文协议" class="headerlink" title="5.6 ICMP：因特网控制报文协议"></a>5.6 ICMP：因特网控制报文协议</h4><h3 id="第6章-链路层和局域网"><a href="#第6章-链路层和局域网" class="headerlink" title="第6章    链路层和局域网"></a>第6章    链路层和局域网</h3><h4 id="6-1-链路层概述"><a href="#6-1-链路层概述" class="headerlink" title="6.1 链路层概述"></a>6.1 链路层概述</h4><h4 id="6-2-差错检测和纠正技术"><a href="#6-2-差错检测和纠正技术" class="headerlink" title="6.2 差错检测和纠正技术"></a>6.2 差错检测和纠正技术</h4><h4 id="6-3-多路访问链路协议"><a href="#6-3-多路访问链路协议" class="headerlink" title="6.3 多路访问链路协议"></a>6.3 多路访问链路协议</h4><h4 id="6-4-交换局域网"><a href="#6-4-交换局域网" class="headerlink" title="6.4 交换局域网"></a>6.4 交换局域网</h4><h4 id="6-7-回顾：Web页面请求的历程"><a href="#6-7-回顾：Web页面请求的历程" class="headerlink" title="6.7 回顾：Web页面请求的历程"></a>6.7 回顾：Web页面请求的历程</h4><h3 id="第7章-无线网络和移动网络"><a href="#第7章-无线网络和移动网络" class="headerlink" title="第7章    无线网络和移动网络"></a>第7章    无线网络和移动网络</h3><h4 id="7-1-概述"><a href="#7-1-概述" class="headerlink" title="7.1 概述"></a>7.1 概述</h4><h4 id="7-2-无线链路和网络特征"><a href="#7-2-无线链路和网络特征" class="headerlink" title="7.2 无线链路和网络特征"></a>7.2 无线链路和网络特征</h4><h4 id="7-3-WiFi：802-11无线LAN"><a href="#7-3-WiFi：802-11无线LAN" class="headerlink" title="7.3 WiFi：802.11无线LAN"></a>7.3 WiFi：802.11无线LAN</h4>]]></content>
+    <content type="html"><![CDATA[<h2 id="计算机网络-自顶向下-学习笔记-amp-计算机通信与网络课程复习"><a href="#计算机网络-自顶向下-学习笔记-amp-计算机通信与网络课程复习" class="headerlink" title="计算机网络-自顶向下 学习笔记 &amp; 计算机通信与网络课程复习"></a>计算机网络-自顶向下 学习笔记 &amp; 计算机通信与网络课程复习</h2><p>参考书目：计算机网络-自顶向下方法（原书第7版）</p><h3 id="第1章-计算机网络和因特网"><a href="#第1章-计算机网络和因特网" class="headerlink" title="第1章    计算机网络和因特网"></a>第1章    计算机网络和因特网</h3><h4 id="1-1-什么是因特网"><a href="#1-1-什么是因特网" class="headerlink" title="1.1    什么是因特网"></a>1.1    什么是因特网</h4><h4 id="1-2-网络边缘"><a href="#1-2-网络边缘" class="headerlink" title="1.2    网络边缘"></a>1.2    网络边缘</h4><h4 id="1-4-分组交换网中的时延、丢包和吞吐量"><a href="#1-4-分组交换网中的时延、丢包和吞吐量" class="headerlink" title="1.4    分组交换网中的时延、丢包和吞吐量"></a>1.4    分组交换网中的时延、丢包和吞吐量</h4><h4 id="1-5-协议层次及服务模型"><a href="#1-5-协议层次及服务模型" class="headerlink" title="1.5    协议层次及服务模型"></a>1.5    协议层次及服务模型</h4><h3 id="第2章-应用层"><a href="#第2章-应用层" class="headerlink" title="第2章    应用层"></a>第2章    应用层</h3><h4 id="2-1-应用层协议原理"><a href="#2-1-应用层协议原理" class="headerlink" title="2.1 应用层协议原理"></a>2.1 应用层协议原理</h4><h4 id="2-2-Web和HTTP"><a href="#2-2-Web和HTTP" class="headerlink" title="2.2 Web和HTTP"></a>2.2 Web和HTTP</h4><h4 id="2-3-因特网中的电子邮件"><a href="#2-3-因特网中的电子邮件" class="headerlink" title="2.3 因特网中的电子邮件"></a>2.3 因特网中的电子邮件</h4><h4 id="2-4-DNS：因特网的目录服务"><a href="#2-4-DNS：因特网的目录服务" class="headerlink" title="2.4 DNS：因特网的目录服务"></a>2.4 DNS：因特网的目录服务</h4><h4 id="2-5-P2P文件分发"><a href="#2-5-P2P文件分发" class="headerlink" title="2.5 P2P文件分发"></a>2.5 P2P文件分发</h4><h3 id="第3章-运输层"><a href="#第3章-运输层" class="headerlink" title="第3章    运输层"></a>第3章    运输层</h3><h4 id="3-1-概述和运输层服务"><a href="#3-1-概述和运输层服务" class="headerlink" title="3.1 概述和运输层服务"></a>3.1 概述和运输层服务</h4><h4 id="3-2-多路复用与多路分解"><a href="#3-2-多路复用与多路分解" class="headerlink" title="3.2 多路复用与多路分解"></a>3.2 多路复用与多路分解</h4><h4 id="3-3-无连接运输：UDP"><a href="#3-3-无连接运输：UDP" class="headerlink" title="3.3 无连接运输：UDP"></a>3.3 无连接运输：UDP</h4><h4 id="3-4-可靠数据传输原理"><a href="#3-4-可靠数据传输原理" class="headerlink" title="3.4 可靠数据传输原理"></a>3.4 可靠数据传输原理</h4><h4 id="3-5-面向连接的运输：TCP"><a href="#3-5-面向连接的运输：TCP" class="headerlink" title="3.5 面向连接的运输：TCP"></a>3.5 面向连接的运输：TCP</h4><h4 id="3-6-拥塞控制原理"><a href="#3-6-拥塞控制原理" class="headerlink" title="3.6 拥塞控制原理"></a>3.6 拥塞控制原理</h4><h4 id="3-7-TCP拥塞控制"><a href="#3-7-TCP拥塞控制" class="headerlink" title="3.7 TCP拥塞控制"></a>3.7 TCP拥塞控制</h4><h3 id="第4章-网络层：数据平面"><a href="#第4章-网络层：数据平面" class="headerlink" title="第4章    网络层：数据平面"></a>第4章    网络层：数据平面</h3><h4 id="4-1-网络层概述"><a href="#4-1-网络层概述" class="headerlink" title="4.1 网络层概述"></a>4.1 网络层概述</h4><h4 id="4-2-路由器工作原理"><a href="#4-2-路由器工作原理" class="headerlink" title="4.2 路由器工作原理"></a>4.2 路由器工作原理</h4><h4 id="4-3-网际协议：IPv4、寻址、IPv6及其他"><a href="#4-3-网际协议：IPv4、寻址、IPv6及其他" class="headerlink" title="4.3 网际协议：IPv4、寻址、IPv6及其他"></a>4.3 网际协议：IPv4、寻址、IPv6及其他</h4><h3 id="第5章-网络层：控制平面"><a href="#第5章-网络层：控制平面" class="headerlink" title="第5章    网络层：控制平面"></a>第5章    网络层：控制平面</h3><h4 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1 概述"></a>5.1 概述</h4><h4 id="5-2-路由选择算法"><a href="#5-2-路由选择算法" class="headerlink" title="5.2 路由选择算法"></a>5.2 路由选择算法</h4><h4 id="5-3-因特网中自治系统内部的路由选择：OSPF"><a href="#5-3-因特网中自治系统内部的路由选择：OSPF" class="headerlink" title="5.3 因特网中自治系统内部的路由选择：OSPF"></a>5.3 因特网中自治系统内部的路由选择：OSPF</h4><h4 id="5-4-ISP之间的路由选择：BGP"><a href="#5-4-ISP之间的路由选择：BGP" class="headerlink" title="5.4 ISP之间的路由选择：BGP"></a>5.4 ISP之间的路由选择：BGP</h4><h4 id="5-6-ICMP：因特网控制报文协议"><a href="#5-6-ICMP：因特网控制报文协议" class="headerlink" title="5.6 ICMP：因特网控制报文协议"></a>5.6 ICMP：因特网控制报文协议</h4><h3 id="第6章-链路层和局域网"><a href="#第6章-链路层和局域网" class="headerlink" title="第6章    链路层和局域网"></a>第6章    链路层和局域网</h3><h4 id="6-1-链路层概述"><a href="#6-1-链路层概述" class="headerlink" title="6.1 链路层概述"></a>6.1 链路层概述</h4><h4 id="6-2-差错检测和纠正技术"><a href="#6-2-差错检测和纠正技术" class="headerlink" title="6.2 差错检测和纠正技术"></a>6.2 差错检测和纠正技术</h4><h4 id="6-3-多路访问链路协议"><a href="#6-3-多路访问链路协议" class="headerlink" title="6.3 多路访问链路协议"></a>6.3 多路访问链路协议</h4><h4 id="6-4-交换局域网"><a href="#6-4-交换局域网" class="headerlink" title="6.4 交换局域网"></a>6.4 交换局域网</h4><h4 id="6-7-回顾：Web页面请求的历程"><a href="#6-7-回顾：Web页面请求的历程" class="headerlink" title="6.7 回顾：Web页面请求的历程"></a>6.7 回顾：Web页面请求的历程</h4><h3 id="第7章-无线网络和移动网络"><a href="#第7章-无线网络和移动网络" class="headerlink" title="第7章    无线网络和移动网络"></a>第7章    无线网络和移动网络</h3><h4 id="7-1-概述"><a href="#7-1-概述" class="headerlink" title="7.1 概述"></a>7.1 概述</h4><h4 id="7-2-无线链路和网络特征"><a href="#7-2-无线链路和网络特征" class="headerlink" title="7.2 无线链路和网络特征"></a>7.2 无线链路和网络特征</h4><h4 id="7-3-WiFi：802-11无线LAN"><a href="#7-3-WiFi：802-11无线LAN" class="headerlink" title="7.3 WiFi：802.11无线LAN"></a>7.3 WiFi：802.11无线LAN</h4>]]></content>
     
     <summary type="html">
     
@@ -63,12 +63,38 @@
     </summary>
     
     
-      <category term="CS courses" scheme="www.waylonding.cn/blog/categories/CS-courses/"/>
+      <category term="CS Courses" scheme="www.waylonding.cn/blog/categories/CS-Courses/"/>
     
     
       <category term="Computer Network" scheme="www.waylonding.cn/blog/tags/Computer-Network/"/>
     
       <category term="System &amp; Network" scheme="www.waylonding.cn/blog/tags/System-Network/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QT creator的使用与TCP传输试验</title>
+    <link href="www.waylonding.cn/blog/2019/11/18/QT%20creator%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8ETCP%E4%BC%A0%E8%BE%93%E8%AF%95%E9%AA%8C/"/>
+    <id>www.waylonding.cn/blog/2019/11/18/QT creator的使用与TCP传输试验/</id>
+    <published>2019-11-18T12:52:39.000Z</published>
+    <updated>2019-11-19T05:40:00.327Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="使用QT-creater实现图形化界面"><a href="#使用QT-creater实现图形化界面" class="headerlink" title="使用QT creater实现图形化界面"></a>使用QT creater实现图形化界面</h1><!-- TOC --><ul><li><a href="#%e4%bd%bf%e7%94%a8qt-creater%e5%ae%9e%e7%8e%b0%e5%9b%be%e5%bd%a2%e5%8c%96%e7%95%8c%e9%9d%a2">使用QT creater实现图形化界面</a></li><li><a href="#1-qt-creater%e7%9a%84%e5%ae%89%e8%a3%85">1 QT creater的安装</a></li><li><a href="#2-%e7%94%a8qt%e5%ae%9e%e7%8e%b0c%e5%9b%be%e5%bd%a2%e7%95%8c%e9%9d%a2">2 用QT实现C++图形界面</a><ul><li><a href="#21-%e7%94%9f%e6%88%90%e7%ae%80%e5%8d%95%e7%9a%84%e7%aa%97%e5%8f%a3%e5%b9%b6%e8%be%93%e5%87%ba%e6%96%87%e5%ad%97">2.1 生成简单的窗口并输出文字</a></li><li><a href="#22-ui%e6%8e%a2%e7%b4%a2">2.2 UI探索</a></li></ul></li></ul><!-- /TOC --><h1 id="1-QT-creater的安装"><a href="#1-QT-creater的安装" class="headerlink" title="1 QT creater的安装"></a>1 QT creater的安装</h1><ul><li>安装的时候注意一点即可，QT5.9之后的安装包不再分VS版本和WINGW版本，而是都整合到了一个安装包中，请根据需要下载</li><li>下载地址可以参考：<a href="http://download.qt.io/archive/qt/" target="_blank" rel="noopener">QT的安装</a></li><li>安装过程可以参考以下博客：<a href="https://blog.csdn.net/qq_23473839/article/details/80523318" target="_blank" rel="noopener">https://blog.csdn.net/qq_23473839/article/details/80523318</a></li></ul><h1 id="2-用QT实现C-图形界面"><a href="#2-用QT实现C-图形界面" class="headerlink" title="2 用QT实现C++图形界面"></a>2 用QT实现C++图形界面</h1><h2 id="2-1-生成简单的窗口并输出文字"><a href="#2-1-生成简单的窗口并输出文字" class="headerlink" title="2.1 生成简单的窗口并输出文字"></a>2.1 生成简单的窗口并输出文字</h2><ul><li>关于在qt图形化界面上生成文字（英文），可参照以下博客：<a href="https://blog.csdn.net/larger5/article/details/78587076" target="_blank" rel="noopener">https://blog.csdn.net/larger5/article/details/78587076</a>  <ul><li>要注意一点，你的文件路径不能出现中文，不然会报错，就像这样：<code>Error while building/deploying project qt (kit: Desktop Qt 5.11.0 MinGW 32bit) When executing step &quot;qmake&quot;</code>   </li><li>关于解决中文路径的方法，推荐以下博客：<a href="https://blog.csdn.net/m0_37906001/article/details/76672634" target="_blank" rel="noopener">https://blog.csdn.net/m0_37906001/article/details/76672634</a>  </li><li>建议还是尽量全部使用用英文路径，以免以后遇到不必要的麻烦。<h2 id="2-2-UI探索"><a href="#2-2-UI探索" class="headerlink" title="2.2 UI探索"></a>2.2 UI探索</h2></li></ul></li><li></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;使用QT-creater实现图形化界面&quot;&gt;&lt;a href=&quot;#使用QT-creater实现图形化界面&quot; class=&quot;headerlink&quot; title=&quot;使用QT creater实现图形化界面&quot;&gt;&lt;/a&gt;使用QT creater实现图形化界面&lt;/h1&gt;&lt;!-- 
+      
+    
+    </summary>
+    
+    
+      <category term="计算机网络" scheme="www.waylonding.cn/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="计算机网络" scheme="www.waylonding.cn/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
@@ -100,32 +126,6 @@
       <category term="hexo相关技术" scheme="www.waylonding.cn/blog/tags/hexo%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF/"/>
     
       <category term="markdown的使用" scheme="www.waylonding.cn/blog/tags/markdown%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>QT creator的使用与TCP传输试验</title>
-    <link href="www.waylonding.cn/blog/2019/11/18/QT%20creator%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8ETCP%E4%BC%A0%E8%BE%93%E8%AF%95%E9%AA%8C/"/>
-    <id>www.waylonding.cn/blog/2019/11/18/QT creator的使用与TCP传输试验/</id>
-    <published>2019-11-18T12:52:39.000Z</published>
-    <updated>2019-11-19T05:40:00.327Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="使用QT-creater实现图形化界面"><a href="#使用QT-creater实现图形化界面" class="headerlink" title="使用QT creater实现图形化界面"></a>使用QT creater实现图形化界面</h1><!-- TOC --><ul><li><a href="#%e4%bd%bf%e7%94%a8qt-creater%e5%ae%9e%e7%8e%b0%e5%9b%be%e5%bd%a2%e5%8c%96%e7%95%8c%e9%9d%a2">使用QT creater实现图形化界面</a></li><li><a href="#1-qt-creater%e7%9a%84%e5%ae%89%e8%a3%85">1 QT creater的安装</a></li><li><a href="#2-%e7%94%a8qt%e5%ae%9e%e7%8e%b0c%e5%9b%be%e5%bd%a2%e7%95%8c%e9%9d%a2">2 用QT实现C++图形界面</a><ul><li><a href="#21-%e7%94%9f%e6%88%90%e7%ae%80%e5%8d%95%e7%9a%84%e7%aa%97%e5%8f%a3%e5%b9%b6%e8%be%93%e5%87%ba%e6%96%87%e5%ad%97">2.1 生成简单的窗口并输出文字</a></li><li><a href="#22-ui%e6%8e%a2%e7%b4%a2">2.2 UI探索</a></li></ul></li></ul><!-- /TOC --><h1 id="1-QT-creater的安装"><a href="#1-QT-creater的安装" class="headerlink" title="1 QT creater的安装"></a>1 QT creater的安装</h1><ul><li>安装的时候注意一点即可，QT5.9之后的安装包不再分VS版本和WINGW版本，而是都整合到了一个安装包中，请根据需要下载</li><li>下载地址可以参考：<a href="http://download.qt.io/archive/qt/" target="_blank" rel="noopener">QT的安装</a></li><li>安装过程可以参考以下博客：<a href="https://blog.csdn.net/qq_23473839/article/details/80523318" target="_blank" rel="noopener">https://blog.csdn.net/qq_23473839/article/details/80523318</a></li></ul><h1 id="2-用QT实现C-图形界面"><a href="#2-用QT实现C-图形界面" class="headerlink" title="2 用QT实现C++图形界面"></a>2 用QT实现C++图形界面</h1><h2 id="2-1-生成简单的窗口并输出文字"><a href="#2-1-生成简单的窗口并输出文字" class="headerlink" title="2.1 生成简单的窗口并输出文字"></a>2.1 生成简单的窗口并输出文字</h2><ul><li>关于在qt图形化界面上生成文字（英文），可参照以下博客：<a href="https://blog.csdn.net/larger5/article/details/78587076" target="_blank" rel="noopener">https://blog.csdn.net/larger5/article/details/78587076</a>  <ul><li>要注意一点，你的文件路径不能出现中文，不然会报错，就像这样：<code>Error while building/deploying project qt (kit: Desktop Qt 5.11.0 MinGW 32bit) When executing step &quot;qmake&quot;</code>   </li><li>关于解决中文路径的方法，推荐以下博客：<a href="https://blog.csdn.net/m0_37906001/article/details/76672634" target="_blank" rel="noopener">https://blog.csdn.net/m0_37906001/article/details/76672634</a>  </li><li>建议还是尽量全部使用用英文路径，以免以后遇到不必要的麻烦。<h2 id="2-2-UI探索"><a href="#2-2-UI探索" class="headerlink" title="2.2 UI探索"></a>2.2 UI探索</h2></li></ul></li><li></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;使用QT-creater实现图形化界面&quot;&gt;&lt;a href=&quot;#使用QT-creater实现图形化界面&quot; class=&quot;headerlink&quot; title=&quot;使用QT creater实现图形化界面&quot;&gt;&lt;/a&gt;使用QT creater实现图形化界面&lt;/h1&gt;&lt;!-- 
-      
-    
-    </summary>
-    
-    
-      <category term="计算机网络" scheme="www.waylonding.cn/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="计算机网络" scheme="www.waylonding.cn/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
