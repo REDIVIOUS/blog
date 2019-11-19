@@ -38,16 +38,16 @@
       <category term="CS Courses" scheme="www.waylonding.cn/blog/categories/CS-Courses/"/>
     
     
-      <category term="Operating System" scheme="www.waylonding.cn/blog/tags/Operating-System/"/>
-    
       <category term="System &amp; Network" scheme="www.waylonding.cn/blog/tags/System-Network/"/>
+    
+      <category term="Operating System" scheme="www.waylonding.cn/blog/tags/Operating-System/"/>
     
   </entry>
   
   <entry>
     <title>ComputerNetwork Notes.md</title>
-    <link href="www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes-md/"/>
-    <id>www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes-md/</id>
+    <link href="www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes/"/>
+    <id>www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes/</id>
     <published>2019-11-19T08:13:01.000Z</published>
     <updated>2019-11-19T08:50:31.663Z</updated>
     
@@ -66,9 +66,9 @@
       <category term="CS courses" scheme="www.waylonding.cn/blog/categories/CS-courses/"/>
     
     
-      <category term="System &amp; Network" scheme="www.waylonding.cn/blog/tags/System-Network/"/>
-    
       <category term="Computer Network" scheme="www.waylonding.cn/blog/tags/Computer-Network/"/>
+    
+      <category term="System &amp; Network" scheme="www.waylonding.cn/blog/tags/System-Network/"/>
     
   </entry>
   
