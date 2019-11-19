@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="www.waylonding.cn/blog/"/>
-  <updated>2019-11-18T12:57:26.070Z</updated>
+  <updated>2019-11-19T05:40:00.327Z</updated>
   <id>www.waylonding.cn/blog/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>hexo博客安装与利用hexo写文章</title>
+    <title>QT creator的使用与TCP传输试验</title>
     <link href="www.waylonding.cn/blog/2019/11/18/QT%20creator%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8ETCP%E4%BC%A0%E8%BE%93%E8%AF%95%E9%AA%8C/"/>
     <id>www.waylonding.cn/blog/2019/11/18/QT creator的使用与TCP传输试验/</id>
     <published>2019-11-18T12:52:39.000Z</published>
-    <updated>2019-11-18T12:57:26.070Z</updated>
+    <updated>2019-11-19T05:40:00.327Z</updated>
     
     <content type="html"><![CDATA[<h1 id="使用QT-creater实现图形化界面"><a href="#使用QT-creater实现图形化界面" class="headerlink" title="使用QT creater实现图形化界面"></a>使用QT creater实现图形化界面</h1><!-- TOC --><ul><li><a href="#%e4%bd%bf%e7%94%a8qt-creater%e5%ae%9e%e7%8e%b0%e5%9b%be%e5%bd%a2%e5%8c%96%e7%95%8c%e9%9d%a2">使用QT creater实现图形化界面</a></li><li><a href="#1-qt-creater%e7%9a%84%e5%ae%89%e8%a3%85">1 QT creater的安装</a></li><li><a href="#2-%e7%94%a8qt%e5%ae%9e%e7%8e%b0c%e5%9b%be%e5%bd%a2%e7%95%8c%e9%9d%a2">2 用QT实现C++图形界面</a><ul><li><a href="#21-%e7%94%9f%e6%88%90%e7%ae%80%e5%8d%95%e7%9a%84%e7%aa%97%e5%8f%a3%e5%b9%b6%e8%be%93%e5%87%ba%e6%96%87%e5%ad%97">2.1 生成简单的窗口并输出文字</a></li><li><a href="#22-ui%e6%8e%a2%e7%b4%a2">2.2 UI探索</a></li></ul></li></ul><!-- /TOC --><h1 id="1-QT-creater的安装"><a href="#1-QT-creater的安装" class="headerlink" title="1 QT creater的安装"></a>1 QT creater的安装</h1><ul><li>安装的时候注意一点即可，QT5.9之后的安装包不再分VS版本和WINGW版本，而是都整合到了一个安装包中，请根据需要下载</li><li>下载地址可以参考：<a href="http://download.qt.io/archive/qt/" target="_blank" rel="noopener">QT的安装</a></li><li>安装过程可以参考以下博客：<a href="https://blog.csdn.net/qq_23473839/article/details/80523318" target="_blank" rel="noopener">https://blog.csdn.net/qq_23473839/article/details/80523318</a></li></ul><h1 id="2-用QT实现C-图形界面"><a href="#2-用QT实现C-图形界面" class="headerlink" title="2 用QT实现C++图形界面"></a>2 用QT实现C++图形界面</h1><h2 id="2-1-生成简单的窗口并输出文字"><a href="#2-1-生成简单的窗口并输出文字" class="headerlink" title="2.1 生成简单的窗口并输出文字"></a>2.1 生成简单的窗口并输出文字</h2><ul><li>关于在qt图形化界面上生成文字（英文），可参照以下博客：<a href="https://blog.csdn.net/larger5/article/details/78587076" target="_blank" rel="noopener">https://blog.csdn.net/larger5/article/details/78587076</a>  <ul><li>要注意一点，你的文件路径不能出现中文，不然会报错，就像这样：<code>Error while building/deploying project qt (kit: Desktop Qt 5.11.0 MinGW 32bit) When executing step &quot;qmake&quot;</code>   </li><li>关于解决中文路径的方法，推荐以下博客：<a href="https://blog.csdn.net/m0_37906001/article/details/76672634" target="_blank" rel="noopener">https://blog.csdn.net/m0_37906001/article/details/76672634</a>  </li><li>建议还是尽量全部使用用英文路径，以免以后遇到不必要的麻烦。<h2 id="2-2-UI探索"><a href="#2-2-UI探索" class="headerlink" title="2.2 UI探索"></a>2.2 UI探索</h2></li></ul></li><li></li></ul>]]></content>
     
@@ -35,6 +35,10 @@
     </summary>
     
     
+      <category term="计算机网络" scheme="www.waylonding.cn/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="计算机网络" scheme="www.waylonding.cn/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
