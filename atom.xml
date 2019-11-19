@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="www.waylonding.cn/blog/"/>
-  <updated>2019-11-19T05:40:00.327Z</updated>
+  <updated>2019-11-19T08:16:12.400Z</updated>
   <id>www.waylonding.cn/blog/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ComputerNetwork Review Notes</title>
+    <link href="www.waylonding.cn/blog/2019/11/19/ComputerNetwork%20Review%20Notes/"/>
+    <id>www.waylonding.cn/blog/2019/11/19/ComputerNetwork Review Notes/</id>
+    <published>2019-11-19T08:16:12.400Z</published>
+    <updated>2019-11-19T08:16:12.400Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ComputerNetwork Review Notes.md</title>
+    <link href="www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes-md/"/>
+    <id>www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes-md/</id>
+    <published>2019-11-19T08:13:01.000Z</published>
+    <updated>2019-11-19T08:20:38.386Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="计算机通信与网络课程复习"><a href="#计算机通信与网络课程复习" class="headerlink" title="计算机通信与网络课程复习"></a>计算机通信与网络课程复习</h2><p>参考书目：计算机网络-自顶向下方法（原书第7版）</p><h3 id="第1章-计算机网络和因特网"><a href="#第1章-计算机网络和因特网" class="headerlink" title="第1章    计算机网络和因特网"></a>第1章    计算机网络和因特网</h3><h4 id="1-1-什么是因特网"><a href="#1-1-什么是因特网" class="headerlink" title="1.1    什么是因特网"></a>1.1    什么是因特网</h4><h4 id="1-2-网络边缘"><a href="#1-2-网络边缘" class="headerlink" title="1.2    网络边缘"></a>1.2    网络边缘</h4><h4 id="1-3-网络核心"><a href="#1-3-网络核心" class="headerlink" title="1.3    网络核心"></a>1.3    网络核心</h4><h4 id="1-4-分组交换网中的时延、丢包和吞吐量"><a href="#1-4-分组交换网中的时延、丢包和吞吐量" class="headerlink" title="1.4    分组交换网中的时延、丢包和吞吐量"></a>1.4    分组交换网中的时延、丢包和吞吐量</h4><h4 id="1-5-协议层次及服务模型"><a href="#1-5-协议层次及服务模型" class="headerlink" title="1.5    协议层次及服务模型"></a>1.5    协议层次及服务模型</h4><h3 id="第2章-应用层"><a href="#第2章-应用层" class="headerlink" title="第2章    应用层"></a>第2章    应用层</h3><h4 id="2-1-应用层协议原理"><a href="#2-1-应用层协议原理" class="headerlink" title="2.1 应用层协议原理"></a>2.1 应用层协议原理</h4><h4 id="2-2-Web和HTTP"><a href="#2-2-Web和HTTP" class="headerlink" title="2.2 Web和HTTP"></a>2.2 Web和HTTP</h4><h4 id="2-3-因特网中的电子邮件"><a href="#2-3-因特网中的电子邮件" class="headerlink" title="2.3 因特网中的电子邮件"></a>2.3 因特网中的电子邮件</h4><h4 id="2-4-DNS：因特网的目录服务"><a href="#2-4-DNS：因特网的目录服务" class="headerlink" title="2.4 DNS：因特网的目录服务"></a>2.4 DNS：因特网的目录服务</h4><h4 id="2-5-P2P文件分发"><a href="#2-5-P2P文件分发" class="headerlink" title="2.5 P2P文件分发"></a>2.5 P2P文件分发</h4><h3 id="第3章-运输层"><a href="#第3章-运输层" class="headerlink" title="第3章    运输层"></a>第3章    运输层</h3><h4 id="3-1-概述和运输层服务"><a href="#3-1-概述和运输层服务" class="headerlink" title="3.1 概述和运输层服务"></a>3.1 概述和运输层服务</h4><h4 id="3-2-多路复用与多路分解"><a href="#3-2-多路复用与多路分解" class="headerlink" title="3.2 多路复用与多路分解"></a>3.2 多路复用与多路分解</h4><h4 id="3-3-无连接运输：UDP"><a href="#3-3-无连接运输：UDP" class="headerlink" title="3.3 无连接运输：UDP"></a>3.3 无连接运输：UDP</h4><h4 id="3-4-可靠数据传输原理"><a href="#3-4-可靠数据传输原理" class="headerlink" title="3.4 可靠数据传输原理"></a>3.4 可靠数据传输原理</h4><h4 id="3-5-面向连接的运输：TCP"><a href="#3-5-面向连接的运输：TCP" class="headerlink" title="3.5 面向连接的运输：TCP"></a>3.5 面向连接的运输：TCP</h4><h4 id="3-6-拥塞控制原理"><a href="#3-6-拥塞控制原理" class="headerlink" title="3.6 拥塞控制原理"></a>3.6 拥塞控制原理</h4><h4 id="3-7-TCP拥塞控制"><a href="#3-7-TCP拥塞控制" class="headerlink" title="3.7 TCP拥塞控制"></a>3.7 TCP拥塞控制</h4><h3 id="第4章-网络层：数据平面"><a href="#第4章-网络层：数据平面" class="headerlink" title="第4章    网络层：数据平面"></a>第4章    网络层：数据平面</h3><h4 id="4-1-网络层概述"><a href="#4-1-网络层概述" class="headerlink" title="4.1 网络层概述"></a>4.1 网络层概述</h4><h4 id="4-2-路由器工作原理"><a href="#4-2-路由器工作原理" class="headerlink" title="4.2 路由器工作原理"></a>4.2 路由器工作原理</h4><h4 id="4-3-网际协议：IPv4、寻址、IPv6及其他"><a href="#4-3-网际协议：IPv4、寻址、IPv6及其他" class="headerlink" title="4.3 网际协议：IPv4、寻址、IPv6及其他"></a>4.3 网际协议：IPv4、寻址、IPv6及其他</h4><h3 id="第5章-网络层：控制平面"><a href="#第5章-网络层：控制平面" class="headerlink" title="第5章    网络层：控制平面"></a>第5章    网络层：控制平面</h3><h4 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1 概述"></a>5.1 概述</h4><h4 id="5-2-路由选择算法"><a href="#5-2-路由选择算法" class="headerlink" title="5.2 路由选择算法"></a>5.2 路由选择算法</h4><h4 id="5-3-因特网中自治系统内部的路由选择：OSPF"><a href="#5-3-因特网中自治系统内部的路由选择：OSPF" class="headerlink" title="5.3 因特网中自治系统内部的路由选择：OSPF"></a>5.3 因特网中自治系统内部的路由选择：OSPF</h4><h4 id="5-4-ISP之间的路由选择：BGP"><a href="#5-4-ISP之间的路由选择：BGP" class="headerlink" title="5.4 ISP之间的路由选择：BGP"></a>5.4 ISP之间的路由选择：BGP</h4><h4 id="5-6-ICMP：因特网控制报文协议"><a href="#5-6-ICMP：因特网控制报文协议" class="headerlink" title="5.6 ICMP：因特网控制报文协议"></a>5.6 ICMP：因特网控制报文协议</h4><h3 id="第6章-链路层和局域网"><a href="#第6章-链路层和局域网" class="headerlink" title="第6章    链路层和局域网"></a>第6章    链路层和局域网</h3><h4 id="6-1-链路层概述"><a href="#6-1-链路层概述" class="headerlink" title="6.1 链路层概述"></a>6.1 链路层概述</h4><h4 id="6-2-差错检测和纠正技术"><a href="#6-2-差错检测和纠正技术" class="headerlink" title="6.2 差错检测和纠正技术"></a>6.2 差错检测和纠正技术</h4><h4 id="6-3-多路访问链路协议"><a href="#6-3-多路访问链路协议" class="headerlink" title="6.3 多路访问链路协议"></a>6.3 多路访问链路协议</h4><h4 id="6-4-交换局域网"><a href="#6-4-交换局域网" class="headerlink" title="6.4 交换局域网"></a>6.4 交换局域网</h4><h4 id="6-7-回顾：Web页面请求的历程"><a href="#6-7-回顾：Web页面请求的历程" class="headerlink" title="6.7 回顾：Web页面请求的历程"></a>6.7 回顾：Web页面请求的历程</h4><h3 id="第7章-无线网络和移动网络"><a href="#第7章-无线网络和移动网络" class="headerlink" title="第7章    无线网络和移动网络"></a>第7章    无线网络和移动网络</h3><h4 id="7-1-概述"><a href="#7-1-概述" class="headerlink" title="7.1 概述"></a>7.1 概述</h4><h4 id="7-2-无线链路和网络特征"><a href="#7-2-无线链路和网络特征" class="headerlink" title="7.2 无线链路和网络特征"></a>7.2 无线链路和网络特征</h4><h4 id="7-3-WiFi：802-11无线LAN"><a href="#7-3-WiFi：802-11无线LAN" class="headerlink" title="7.3 WiFi：802.11无线LAN"></a>7.3 WiFi：802.11无线LAN</h4>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;计算机通信与网络课程复习&quot;&gt;&lt;a href=&quot;#计算机通信与网络课程复习&quot; class=&quot;headerlink&quot; title=&quot;计算机通信与网络课程复习&quot;&gt;&lt;/a&gt;计算机通信与网络课程复习&lt;/h2&gt;&lt;p&gt;参考书目：计算机网络-自顶向下方法（原书第7版）&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="CS course in HUST" scheme="www.waylonding.cn/blog/categories/CS-course-in-HUST/"/>
+    
+    
+      <category term="Computer Network" scheme="www.waylonding.cn/blog/tags/Computer-Network/"/>
+    
+      <category term="system &amp; Network" scheme="www.waylonding.cn/blog/tags/system-Network/"/>
+    
+  </entry>
   
   <entry>
     <title>QT creator的使用与TCP传输试验</title>
