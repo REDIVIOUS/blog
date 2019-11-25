@@ -99,11 +99,159 @@
 </li>
 <li>什么时候中断<br>用户态下超出了权限时保护操作系统：<ul>
 <li>当用户执行了一条特权指令</li>
-<li>当用户程序试图访问<code>操作系统数据区</code>或<code>其他程序占用的区域</code>时。</li>
-</ul>
-</li>
-<li></li>
+<li>当用户程序试图访问<code>操作系统数据区</code>或<code>其他程序占用的区域</code>时。<h4 id="2-4-中断及其处理"><a href="#2-4-中断及其处理" class="headerlink" title="2.4 中断及其处理 *"></a>2.4 中断及其处理 *</h4></li>
 </ul>
 </li>
 </ul>
-</div><div class="post-copyright"><blockquote><p>原文作者: Waylon Ding</p><p>原文链接: <a href="/blog/www.waylonding.cn/blog/2019/11/19/OpeartingSystem-Notes/">www.waylonding.cn/blog/2019/11/19/OpeartingSystem-Notes/</a></p><p>版权声明: 转载请注明出处(必须保留作者署名及链接)</p></blockquote></div><div class="tags"><a href="/blog/tags/System-Network/">System &amp; Network</a><a href="/blog/tags/Operating-System/">Operating System</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/blog/2019/11/20/Computing-Theory/" class="pre">Computing Theory Notes</a><a href="/blog/2019/11/19/ComputerNetwork-Review-Notes/" class="next">ComputerNetwork Notes</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#计算机操作系统学习-amp-复习笔记"><span class="toc-text">计算机操作系统学习&amp;复习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一章-绪论"><span class="toc-text">第一章 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-操作系统在计算机中的地位"><span class="toc-text">1.1 操作系统在计算机中的地位 *</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-操作系统采用的技术"><span class="toc-text">1.5 操作系统采用的技术 *</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二章-操作系统的结构和硬件支持"><span class="toc-text">第二章 操作系统的结构和硬件支持</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-处理机的态"><span class="toc-text">2.3 处理机的态 *</span></a></li></ol></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/20/Computing-Theory/">Computing Theory Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/19/OpeartingSystem-Notes/">OpeartingSystem Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/19/ComputerNetwork-Review-Notes/">ComputerNetwork Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/18/QT%20creator%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8ETCP%E4%BC%A0%E8%BE%93%E8%AF%95%E9%AA%8C/">QT creator的使用与TCP传输试验</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/18/hexo%E5%8D%9A%E5%AE%A2%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%A9%E7%94%A8hexo%E5%86%99%E6%96%87%E7%AB%A0/">Build My Personal Blog with Github and Hexo</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CS-Courses/">CS Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">hexo搭建属于自己的博客</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/hexo%E6%8A%80%E6%9C%AF/">hexo技术</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/blog/tags/Computer-Network/" style="font-size: 15px;">Computer Network</a> <a href="/blog/tags/System-Network/" style="font-size: 15px;">System & Network</a> <a href="/blog/tags/Operating-System/" style="font-size: 15px;">Operating System</a> <a href="/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a> <a href="/blog/tags/Formal-language-and-Automata/" style="font-size: 15px;">Formal language and Automata</a> <a href="/blog/tags/hexo%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF/" style="font-size: 15px;">hexo相关技术</a> <a href="/blog/tags/markdown%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 15px;">markdown的使用</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a><span class="archive-list-count">5</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/blog/baidusitemap.xml">网站地图</a> |  <a href="/blog/atom.xml">订阅本站</a> |  <a href="/blog/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/blog/." rel="nofollow">Waylon Ding.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/blog/js/search.json.js?v=2.0.4"></script><script type="text/javascript" src="/blog/js/toctotop.js?v=2.0.4" async></script><link rel="stylesheet" type="text/css" href="/blog/share/css/share.css"><script type="text/javascript" src="/blog/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/blog/share/js/qrcode.js" charset="utf-8"></script></body></html>
+</li>
+<li>中断：某个事件（掉电、定点加法溢出，I/O结束）发生时，停止现行程序执行，转而处理该事件的程序对事件进行处理，处理完毕返回执行原来程序。</li>
+<li>中断类型：<ul>
+<li>I/O中断</li>
+<li>外中断：时钟、操作员控制台中断、通信中断</li>
+<li>机器故障中断：电源、主存取指错等。</li>
+<li>程序性中断：定点溢出、用户态下使用核态指令、非法操作</li>
+<li>访管中断：对操作系统提出某种需求的时所发出的中断。</li>
+</ul>
+</li>
+<li>中断方式：<ul>
+<li>强迫性中断：除了访管中断</li>
+<li>自愿中断：访管中断</li>
+</ul>
+</li>
+<li>中断来源<ul>
+<li>中断：由处理机外部事件引起的中断：时钟、磁盘、终端</li>
+<li>俘获：由处理机内部事件引起的中断：非法指令、地址越界、浮点溢出、trap指令</li>
+</ul>
+</li>
+<li>中断响应及硬件支持：<ul>
+<li>保护现场、恢复现场<ul>
+<li>现场： 后继指令所在主存的单元号、程序运行所处的状态、指令执行情况、程序执行的中间结果</li>
+<li>保护现场：现场存入主存。</li>
+<li>恢复现场：把保护的现场重新送到各个特殊寄存器</li>
+</ul>
+</li>
+<li>中断响应：中央处理器发出请求-&gt;中止现有程序执行-&gt;引出中断处理程序的过程<ul>
+<li>系统堆栈：存入指令计数器(PC)、处理机状态寄存器(PS) 的内容 (一般先PS后PC？)（硬件层面）</li>
+<li>中断向量表：存入中断程序地址（地址内存从0开始）</li>
+<li>中断响应实质：交换指令地址及处理机的状态信息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>软件的中断处理过程<ul>
+<li>中断进入</li>
+<li>step1 保护中断程序的现场（没有保存的寄存器）</li>
+<li>step2 进入相应的中断服务例程。</li>
+<li>step3 恢复中断程序的现场。</li>
+</ul>
+</li>
+</ul>
+<h3 id="第三章-操作系统的用户接口"><a href="#第三章-操作系统的用户接口" class="headerlink" title="第三章 操作系统的用户接口"></a>第三章 操作系统的用户接口</h3><h4 id="3-2-操作系统的用户接口及分类"><a href="#3-2-操作系统的用户接口及分类" class="headerlink" title="3.2 操作系统的用户接口及分类"></a>3.2 操作系统的用户接口及分类</h4><ul>
+<li>用户接口/用户界面：用户控制计算机的手段<ul>
+<li>操作接口/命令界面：键盘命令（分时操作系统）（MS-DOS、unix/linux）、图形界面（windows）、作业控制语言（批处理系统）<br>组织工作流程，控制程序运行（C语言编写编译链接等）</li>
+<li>程序接口：系统功能调用<br>程序运行时，使用系统功能调用来请求操作系统的服务。<h4 id="3-3-系统功能调用及其实现技术"><a href="#3-3-系统功能调用及其实现技术" class="headerlink" title="3.3 系统功能调用及其实现技术"></a>3.3 系统功能调用及其实现技术</h4></li>
+</ul>
+</li>
+<li>硬件支持：由用户态到管态<ul>
+<li>访管指令/自愿进管指令：svc n（功能号）</li>
+<li>访管中断：正在运行的程序对于操作系统的某种需求。</li>
+<li>系统功能调用：借助访管指令，取值n（特定功能），硬件进入，软件方法完成。</li>
+</ul>
+</li>
+<li>系统调用实现<br>用户程序（svc i）、访管中断处理程序（按照i转移）、例行子程序入口地址表、例行自程序<h4 id="3-5-linux系统调用功能的实现"><a href="#3-5-linux系统调用功能的实现" class="headerlink" title="3.5 linux系统调用功能的实现"></a>3.5 linux系统调用功能的实现</h4></li>
+<li>linux系统功能调用的进入<ul>
+<li>异常处理（系统调用通过异常类型实现）、软中断（int 0x80）、状态转换（从用户态到核心态，执行自陷处理程序（防管中断处理程序））</li>
+</ul>
+</li>
+<li>getuid系统调用过程<br>  用户程序(getuid())-&gt;标准C库(内含int0x80)-&gt;系统调用处理程序-&gt;内核例程（系统服务例程）</li>
+<li>linux系统调用的进入和返回<ul>
+<li>软中断（自陷指令/访管指令）int 0x80</li>
+<li>发生中断（自陷/访管中断）</li>
+<li>处理机用户态-&gt;内核态（内核状态的改变）</li>
+<li>system_call()开始执行系统调用处理程序（系统功能调用的执行）</li>
+<li>处理完毕后，iret返回到用户态</li>
+</ul>
+</li>
+<li>Linux系统功能调用的实现机制<ul>
+<li>硬件支持： 增加一个软中断指令、自陷</li>
+<li>软件：系统调用号、系统调用表、系统服务例程、系统调用处理程序</li>
+</ul>
+</li>
+<li>增加一个新的系统调用<ul>
+<li>增加一个新的系统服务例程</li>
+<li>增加一个新的系统调用号</li>
+<li>在系统调用表中增加一项（新例程的地址）</li>
+<li>将新的系统服务例程加入到系统中（系统重构）</li>
+</ul>
+</li>
+<li>系统调用号<ul>
+<li>linux中每个系统调用被赋予一个唯一的系统调用号<br>格式：#define _NR_fork 2</li>
+</ul>
+</li>
+<li>系统调用表：记录了内核中所有已经注册过的系统调用、系统调用的函数指针（函数指针数组）（保存所有系统调用的函数指针）</li>
+<li>系统调用的处理过程<ul>
+<li>宏SAVE_ALL保护现场</li>
+<li>正确性检查</li>
+<li>eax中包含系统调用号，调用对应的服务例程</li>
+<li>服务流程结束时，RESTORE_ALL恢复寄存器</li>
+<li>iret返回</li>
+</ul>
+</li>
+</ul>
+<h3 id="第四章-进程及进程管理"><a href="#第四章-进程及进程管理" class="headerlink" title="第四章 进程及进程管理"></a>第四章 进程及进程管理</h3><h4 id="4-1-并发进程及其特点"><a href="#4-1-并发进程及其特点" class="headerlink" title="4.1 并发进程及其特点"></a>4.1 并发进程及其特点</h4><ul>
+<li>程序的顺序执行：一个程序的一次执行过程称为一个计算，一个计算的若干操作必须按照严格的先后顺序来执行。<ul>
+<li>顺序性：按照严格顺序执行</li>
+<li>封闭性：一旦开始执行，不受外界因素影响</li>
+<li>可再现性：执行的结果与他的执行速度无关（时间无关），与初始条件有关。</li>
+</ul>
+</li>
+<li>并发程序<ul>
+<li>定义：若干个程序同时在系统中运行，程序在时间上时重叠的（一个没做完，另外一个已经开始）</li>
+<li>并行语句记号<br>cobegin<br>  S1，S2，S3…<br>coend</li>
+</ul>
+</li>
+<li>并发程序的特点<ul>
+<li>失去了封闭性和可再现性<br>一个程序的执行可以改变另一个程序的变量，后者的输出依赖于各程序执行的相对速度，失去了程序的封闭性的特点。</li>
+<li>解决进程的同步问题（与时间有关的错误）</li>
+<li>程序与计算不再一一对应：一个程序对应多个计算</li>
+<li>程序并发执行的相互制约：间接的相互制约：资源共享、直接的相互制约：公共变量</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-2-1-进程定义"><a href="#4-2-1-进程定义" class="headerlink" title="4.2.1 进程定义"></a>4.2.1 进程定义</h4><ul>
+<li>运行（获得cpu）-&gt;暂停（保留状态）-&gt;运行（获得cpu）</li>
+<li>定义：在给定的活动空间和初始环境下，在一个处理机上的执行过程。</li>
+<li>与程序的区别<ul>
+<li>程序静态（C语言代码不变）、进程动态（一次执行过程）</li>
+<li>进程是一个独立运行的活动单位</li>
+<li>竞争系统资源的基本单位（cpu，I/O）</li>
+<li>一个程序可以对应多个进程，一个进程至少包含一个程序。<h4 id="4-2-2-进程状态及其变迁"><a href="#4-2-2-进程状态及其变迁" class="headerlink" title="4.2.2 进程状态及其变迁"></a>4.2.2 进程状态及其变迁</h4></li>
+</ul>
+</li>
+<li>进程的基本状态<ul>
+<li>运行状态（占用cpu）：已经获得运行所必须的资源，程序正在处理机上执行 （单cpu运行状态只能有一个）</li>
+<li>等待状态（输入输出）：程序等待某一事件等待发生（等待外部传输完成等等）而暂时停止执行（这时即使给它cpu的控制权也无法执行）</li>
+<li>就绪状态：进程已经获得除了CPU之外的运行所必须的资源，一旦获得了CPU控制权，就可以立即运行。</li>
+</ul>
+</li>
+<li>进程状态的变迁：（基本状态变迁只有前三个）<ul>
+<li>运行-&gt;等待：服务请求（I/O）</li>
+<li>等待-&gt;就绪：（I/O是完成）服务完成，事件来到</li>
+<li>就绪-&gt;运行：进程调度（CPU空出）</li>
+<li>等待-&gt;运行：不可能</li>
+<li>运行-&gt;就绪：时间片到了（分时系统中）</li>
+<li>就绪-&gt;等待：有需求的系统提供（一般没有）</li>
+</ul>
+</li>
+<li>linux系统状态变迁<ul>
+<li>新进程-&gt;就绪：创建</li>
+<li>就绪-&gt;运行：进程调度</li>
+<li>运行-&gt;就绪：被抢占</li>
+<li>等待-&gt;就绪：等待的事情发生</li>
+<li>运行-&gt;等待：等待某事件</li>
+<li>运行-&gt;终止：进程完成</li>
+</ul>
+</li>
+<li>进程状态变迁的驱动及条件<br>见作业习题<h4 id="4-2-3-进程控制块及进程队列"><a href="#4-2-3-进程控制块及进程队列" class="headerlink" title="4.2.3 进程控制块及进程队列"></a>4.2.3 进程控制块及进程队列</h4></li>
+</ul>
+<h4 id="4-3-进程控制"><a href="#4-3-进程控制" class="headerlink" title="4.3 进程控制"></a>4.3 进程控制</h4><h4 id="4-4-2-进程互斥的概念"><a href="#4-4-2-进程互斥的概念" class="headerlink" title="4.4.2 进程互斥的概念"></a>4.4.2 进程互斥的概念</h4><h4 id=""><a href="#" class="headerlink" title=""></a></h4></div><div class="post-copyright"><blockquote><p>原文作者: Waylon Ding</p><p>原文链接: <a href="/blog/www.waylonding.cn/blog/2019/11/19/OpeartingSystem-Notes/">www.waylonding.cn/blog/2019/11/19/OpeartingSystem-Notes/</a></p><p>版权声明: 转载请注明出处(必须保留作者署名及链接)</p></blockquote></div><div class="tags"><a href="/blog/tags/Operating-System/">Operating System</a><a href="/blog/tags/System-Network/">System &amp; Network</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/blog/2019/11/20/Computing-Theory/" class="pre">Computing Theory Notes</a><a href="/blog/2019/11/19/ComputerNetwork-Review-Notes/" class="next">ComputerNetwork Notes</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#计算机操作系统学习-amp-复习笔记"><span class="toc-text">计算机操作系统学习&amp;复习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一章-绪论"><span class="toc-text">第一章 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-操作系统在计算机中的地位"><span class="toc-text">1.1 操作系统在计算机中的地位 *</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-操作系统采用的技术"><span class="toc-text">1.5 操作系统采用的技术 *</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二章-操作系统的结构和硬件支持"><span class="toc-text">第二章 操作系统的结构和硬件支持</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-处理机的态"><span class="toc-text">2.3 处理机的态 *</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-中断及其处理"><span class="toc-text">2.4 中断及其处理 *</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三章-操作系统的用户接口"><span class="toc-text">第三章 操作系统的用户接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-操作系统的用户接口及分类"><span class="toc-text">3.2 操作系统的用户接口及分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-系统功能调用及其实现技术"><span class="toc-text">3.3 系统功能调用及其实现技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-linux系统调用功能的实现"><span class="toc-text">3.5 linux系统调用功能的实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第四章-进程及进程管理"><span class="toc-text">第四章 进程及进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-并发进程及其特点"><span class="toc-text">4.1 并发进程及其特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-进程定义"><span class="toc-text">4.2.1 进程定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-进程状态及其变迁"><span class="toc-text">4.2.2 进程状态及其变迁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-进程控制块及进程队列"><span class="toc-text">4.2.3 进程控制块及进程队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-进程控制"><span class="toc-text">4.3 进程控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-2-进程互斥的概念"><span class="toc-text">4.4.2 进程互斥的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text"></span></a></li></ol></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/20/Computing-Theory/">Computing Theory Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/19/OpeartingSystem-Notes/">OpeartingSystem Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/19/ComputerNetwork-Review-Notes/">ComputerNetwork Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/18/QT%20creator%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8ETCP%E4%BC%A0%E8%BE%93%E8%AF%95%E9%AA%8C/">QT creator的使用与TCP传输试验</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/18/hexo%E5%8D%9A%E5%AE%A2%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%A9%E7%94%A8hexo%E5%86%99%E6%96%87%E7%AB%A0/">Build My Personal Blog with Github and Hexo</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CS-Courses/">CS Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">hexo搭建属于自己的博客</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/hexo%E6%8A%80%E6%9C%AF/">hexo技术</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/blog/tags/Formal-language-and-Automata/" style="font-size: 15px;">Formal language and Automata</a> <a href="/blog/tags/Operating-System/" style="font-size: 15px;">Operating System</a> <a href="/blog/tags/System-Network/" style="font-size: 15px;">System & Network</a> <a href="/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a> <a href="/blog/tags/Computer-Network/" style="font-size: 15px;">Computer Network</a> <a href="/blog/tags/hexo%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF/" style="font-size: 15px;">hexo相关技术</a> <a href="/blog/tags/markdown%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 15px;">markdown的使用</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a><span class="archive-list-count">5</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/blog/baidusitemap.xml">网站地图</a> |  <a href="/blog/atom.xml">订阅本站</a> |  <a href="/blog/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/blog/." rel="nofollow">Waylon Ding.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/blog/js/search.json.js?v=2.0.4"></script><script type="text/javascript" src="/blog/js/toctotop.js?v=2.0.4" async></script><link rel="stylesheet" type="text/css" href="/blog/share/css/share.css"><script type="text/javascript" src="/blog/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/blog/share/js/qrcode.js" charset="utf-8"></script></body></html>
