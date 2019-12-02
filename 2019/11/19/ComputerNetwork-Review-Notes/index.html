@@ -111,11 +111,66 @@
 </li>
 <li>GBN<br>  * </li>
 <li>SR<ul>
-<li><h4 id="3-5-面向连接的运输：TCP"><a href="#3-5-面向连接的运输：TCP" class="headerlink" title="3.5 面向连接的运输：TCP"></a>3.5 面向连接的运输：TCP</h4><h4 id="3-6-拥塞控制原理"><a href="#3-6-拥塞控制原理" class="headerlink" title="3.6 拥塞控制原理"></a>3.6 拥塞控制原理</h4><h4 id="3-7-TCP拥塞控制"><a href="#3-7-TCP拥塞控制" class="headerlink" title="3.7 TCP拥塞控制"></a>3.7 TCP拥塞控制</h4></li>
+<li><h4 id="3-5-面向连接的运输：TCP"><a href="#3-5-面向连接的运输：TCP" class="headerlink" title="3.5 面向连接的运输：TCP"></a>3.5 面向连接的运输：TCP</h4></li>
+</ul>
+</li>
+<li>TCP将IP层的不可靠变为可靠</li>
+<li>技术：流水线机制、累计确认、单一重传定时器<ul>
+<li>出发重传的事件：超时、收到重复的ACK</li>
+</ul>
+</li>
+<li>如何估计RTT<ul>
+<li>SampleRTT：从段发出去到收到ACK的事件</li>
+<li>SampleRTT的变化值：测量多个RTT求平均值（指数加权移动平均）<br>EstimatedRTT=(1-alpha)<em>EstimatedRTT+alpha</em>SampleRTT (alpha=0.125)</li>
+<li>测量RTT的变化值：SampleRTT和EstimatedRTT的差值<br>DevRTT=(1-beta)<em>DevRTT+beta</em>|SampleRTT-EstimatedRTT| (beta=0.25)</li>
+<li>TimeoutInterval=EstimatedRTT+4*DevRTT</li>
+</ul>
+</li>
+<li>发送方<ul>
+<li>创建segment，序列号：segment第一个字节的编号。</li>
+<li>开启计时器，设置超时时间TimeOutInterval</li>
+<li>超时：重传引起超时的Segment，重起定时器</li>
+<li>shoudaoACK：更新SendBase，若窗口中还有没有被确认的分组，重起定时器</li>
+</ul>
+</li>
+<li>快速重传机制<ul>
+<li>重复ACK检测分组丢失：如果sender收到对于同一个数据的3个ACK，即假定该数据之后的段已经丢失，在计时器超时之前即进行重传</li>
+<li>超时间隔加倍：每一次TCP重传均将下一次超时间隔设置为先前值的两倍</li>
+</ul>
+</li>
+<li>流量控制<ul>
+<li>发送方数据过快过多，淹没接收方（buffer溢出）</li>
+<li>窗口值的计算<ul>
+<li>接收方：LastByteRcvd – LastByteRead ≤ RcvBuffer<br>RcvWindows = RcvBuffer – [LastByteRcvd - LastByteRead]</li>
+<li>发送方：LastByteSent – LastByteAcked ≤ RcvWindow</li>
+<li>特殊情况：RcvWindow=0，无任何数据给发送方，发送方会向接收方发送只有一个字节数据的报文段，目的是试探</li>
 </ul>
 </li>
 </ul>
-<h3 id="第4章-网络层：数据平面"><a href="#第4章-网络层：数据平面" class="headerlink" title="第4章    网络层：数据平面"></a>第4章    网络层：数据平面</h3><h4 id="4-1-网络层概述"><a href="#4-1-网络层概述" class="headerlink" title="4.1 网络层概述"></a>4.1 网络层概述</h4><h4 id="4-2-路由器工作原理"><a href="#4-2-路由器工作原理" class="headerlink" title="4.2 路由器工作原理"></a>4.2 路由器工作原理</h4><h4 id="4-3-网际协议：IPv4、寻址、IPv6及其他"><a href="#4-3-网际协议：IPv4、寻址、IPv6及其他" class="headerlink" title="4.3 网际协议：IPv4、寻址、IPv6及其他"></a>4.3 网际协议：IPv4、寻址、IPv6及其他</h4><h3 id="第5章-网络层：控制平面"><a href="#第5章-网络层：控制平面" class="headerlink" title="第5章    网络层：控制平面"></a>第5章    网络层：控制平面</h3><h4 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1 概述"></a>5.1 概述</h4><h4 id="5-2-路由选择算法"><a href="#5-2-路由选择算法" class="headerlink" title="5.2 路由选择算法"></a>5.2 路由选择算法</h4><h4 id="5-3-因特网中自治系统内部的路由选择：OSPF"><a href="#5-3-因特网中自治系统内部的路由选择：OSPF" class="headerlink" title="5.3 因特网中自治系统内部的路由选择：OSPF"></a>5.3 因特网中自治系统内部的路由选择：OSPF</h4><h4 id="5-4-ISP之间的路由选择：BGP"><a href="#5-4-ISP之间的路由选择：BGP" class="headerlink" title="5.4 ISP之间的路由选择：BGP"></a>5.4 ISP之间的路由选择：BGP</h4><h4 id="5-6-ICMP：因特网控制报文协议"><a href="#5-6-ICMP：因特网控制报文协议" class="headerlink" title="5.6 ICMP：因特网控制报文协议"></a>5.6 ICMP：因特网控制报文协议</h4><h3 id="第6章-链路层和局域网"><a href="#第6章-链路层和局域网" class="headerlink" title="第6章    链路层和局域网"></a>第6章    链路层和局域网</h3><h4 id="6-1-链路层概述"><a href="#6-1-链路层概述" class="headerlink" title="6.1 链路层概述"></a>6.1 链路层概述</h4><h4 id="6-2-差错检测和纠正技术"><a href="#6-2-差错检测和纠正技术" class="headerlink" title="6.2 差错检测和纠正技术"></a>6.2 差错检测和纠正技术</h4><h4 id="6-3-多路访问链路协议"><a href="#6-3-多路访问链路协议" class="headerlink" title="6.3 多路访问链路协议"></a>6.3 多路访问链路协议</h4><h4 id="6-4-交换局域网"><a href="#6-4-交换局域网" class="headerlink" title="6.4 交换局域网"></a>6.4 交换局域网</h4><h4 id="6-7-回顾：Web页面请求的历程"><a href="#6-7-回顾：Web页面请求的历程" class="headerlink" title="6.7 回顾：Web页面请求的历程"></a>6.7 回顾：Web页面请求的历程</h4><h3 id="第7章-无线网络和移动网络"><a href="#第7章-无线网络和移动网络" class="headerlink" title="第7章    无线网络和移动网络"></a>第7章    无线网络和移动网络</h3><h4 id="7-1-概述"><a href="#7-1-概述" class="headerlink" title="7.1 概述"></a>7.1 概述</h4><ul>
+</li>
+<li>连接管理<ul>
+<li>初始化TCP变量<ul>
+<li>序列号、Buffer和流量控制信息</li>
+<li>三次握手<ul>
+<li>客户发送SYN报文段：告知服务器序列号</li>
+<li>服务器收到SYN报文段，回复SYNACK报文段：建立缓存区、回复序列号</li>
+<li>客户端收到SYNACK，回复ACK报文段，可能包含数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>关闭请求：一般是客户机关闭<ul>
+<li>客户机向服务器发送TCP FIN报文段</li>
+<li>服务器收到FIN，回复ACK，关闭连接，发送FIN</li>
+<li>收到FIN，回复ACK；重复收到FIN，重发ACK</li>
+<li>服务器收到ACK，真正关闭连接</li>
+</ul>
+</li>
+<li>TCP连接管理的状态序列：见PPT81<h4 id="3-6-拥塞控制原理"><a href="#3-6-拥塞控制原理" class="headerlink" title="3.6 拥塞控制原理"></a>3.6 拥塞控制原理</h4></li>
+</ul>
+</li>
+</ul>
+<h4 id="3-7-TCP拥塞控制"><a href="#3-7-TCP拥塞控制" class="headerlink" title="3.7 TCP拥塞控制"></a>3.7 TCP拥塞控制</h4><h3 id="第4章-网络层：数据平面"><a href="#第4章-网络层：数据平面" class="headerlink" title="第4章    网络层：数据平面"></a>第4章    网络层：数据平面</h3><h4 id="4-1-网络层概述"><a href="#4-1-网络层概述" class="headerlink" title="4.1 网络层概述"></a>4.1 网络层概述</h4><h4 id="4-2-路由器工作原理"><a href="#4-2-路由器工作原理" class="headerlink" title="4.2 路由器工作原理"></a>4.2 路由器工作原理</h4><h4 id="4-3-网际协议：IPv4、寻址、IPv6及其他"><a href="#4-3-网际协议：IPv4、寻址、IPv6及其他" class="headerlink" title="4.3 网际协议：IPv4、寻址、IPv6及其他"></a>4.3 网际协议：IPv4、寻址、IPv6及其他</h4><h3 id="第5章-网络层：控制平面"><a href="#第5章-网络层：控制平面" class="headerlink" title="第5章    网络层：控制平面"></a>第5章    网络层：控制平面</h3><h4 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1 概述"></a>5.1 概述</h4><h4 id="5-2-路由选择算法"><a href="#5-2-路由选择算法" class="headerlink" title="5.2 路由选择算法"></a>5.2 路由选择算法</h4><h4 id="5-3-因特网中自治系统内部的路由选择：OSPF"><a href="#5-3-因特网中自治系统内部的路由选择：OSPF" class="headerlink" title="5.3 因特网中自治系统内部的路由选择：OSPF"></a>5.3 因特网中自治系统内部的路由选择：OSPF</h4><h4 id="5-4-ISP之间的路由选择：BGP"><a href="#5-4-ISP之间的路由选择：BGP" class="headerlink" title="5.4 ISP之间的路由选择：BGP"></a>5.4 ISP之间的路由选择：BGP</h4><h4 id="5-6-ICMP：因特网控制报文协议"><a href="#5-6-ICMP：因特网控制报文协议" class="headerlink" title="5.6 ICMP：因特网控制报文协议"></a>5.6 ICMP：因特网控制报文协议</h4><h3 id="第6章-链路层和局域网"><a href="#第6章-链路层和局域网" class="headerlink" title="第6章    链路层和局域网"></a>第6章    链路层和局域网</h3><h4 id="6-1-链路层概述"><a href="#6-1-链路层概述" class="headerlink" title="6.1 链路层概述"></a>6.1 链路层概述</h4><h4 id="6-2-差错检测和纠正技术"><a href="#6-2-差错检测和纠正技术" class="headerlink" title="6.2 差错检测和纠正技术"></a>6.2 差错检测和纠正技术</h4><h4 id="6-3-多路访问链路协议"><a href="#6-3-多路访问链路协议" class="headerlink" title="6.3 多路访问链路协议"></a>6.3 多路访问链路协议</h4><h4 id="6-4-交换局域网"><a href="#6-4-交换局域网" class="headerlink" title="6.4 交换局域网"></a>6.4 交换局域网</h4><h4 id="6-7-回顾：Web页面请求的历程"><a href="#6-7-回顾：Web页面请求的历程" class="headerlink" title="6.7 回顾：Web页面请求的历程"></a>6.7 回顾：Web页面请求的历程</h4><h3 id="第7章-无线网络和移动网络"><a href="#第7章-无线网络和移动网络" class="headerlink" title="第7章    无线网络和移动网络"></a>第7章    无线网络和移动网络</h3><h4 id="7-1-概述"><a href="#7-1-概述" class="headerlink" title="7.1 概述"></a>7.1 概述</h4><ul>
 <li>无线网络的元素<ul>
 <li>无线主机（可移动、可固定）</li>
 <li>无线链路：连接无线主机和基站（802.11ac; 802.11n; 802.11a,g; 802.11b; 802.15）(4G\3G\2G\2.5G\802.11ag ptop)</li>
