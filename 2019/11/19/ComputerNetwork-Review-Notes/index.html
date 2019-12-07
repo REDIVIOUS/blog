@@ -28,9 +28,22 @@
 </li>
 <li>接入网络<ul>
 <li>将网络边缘接入网络核心（端系统连接到边缘路由器）</li>
-<li>边缘路由器：端系统到任何其他远程系统路径上的第一台路由器<h4 id="1-3-网络核心"><a href="#1-3-网络核心" class="headerlink" title="1.3 网络核心"></a>1.3 网络核心</h4></li>
+<li>边缘路由器：端系统到任何其他远程系统路径上的第一台路由器</li>
 </ul>
 </li>
+<li>接入方式：<ul>
+<li>家庭：Modem拨号/ADSL拨号/HFC/FTTH/卫星<ul>
+<li>Modem拨号：无法在上网同时拨打电话</li>
+<li>DSL（数字用户线）：下行/上行速率最高可达55Mbps/15Mbps、频分复用、带宽独享</li>
+<li>HFC（光纤同轴电缆混合网络）：下行/上行速率最高可达40mbps/30mbps、带宽共享</li>
+<li></li>
+</ul>
+</li>
+<li>机构（企业）：以太网/WIFI</li>
+<li>广域无线接入：3g/LTE</li>
+</ul>
+</li>
+<li><h4 id="1-3-网络核心"><a href="#1-3-网络核心" class="headerlink" title="1.3 网络核心"></a>1.3 网络核心</h4></li>
 <li>基本问题：数据如何通过网络传输</li>
 <li>关键功能：路由（确定从源到目的）+转发（将分组从路由器的输入端口交换至正确的输出端口）</li>
 <li>电路交换<ul>
@@ -268,7 +281,248 @@
 <li>上传数据特殊方式<br>使用GET，上传数据放在URL中：<a href="http://www.somesite.com/animalsearch?monkeys&amp;banana" target="_blank" rel="noopener">www.somesite.com/animalsearch?monkeys&amp;banana</a></li>
 </ul>
 </li>
-<li>HTTP 响应报文<h4 id="2-3-因特网中的电子邮件"><a href="#2-3-因特网中的电子邮件" class="headerlink" title="2.3 因特网中的电子邮件"></a>2.3 因特网中的电子邮件</h4><h4 id="2-4-DNS：因特网的目录服务"><a href="#2-4-DNS：因特网的目录服务" class="headerlink" title="2.4 DNS：因特网的目录服务"></a>2.4 DNS：因特网的目录服务</h4><h4 id="2-5-P2P文件分发"><a href="#2-5-P2P文件分发" class="headerlink" title="2.5 P2P文件分发"></a>2.5 P2P文件分发</h4></li>
+<li>HTTP 响应报文<ul>
+<li>状态行+首部诸行+被请求的html文件</li>
+<li>状态行=版本+状态编码+短语</li>
+<li>状态响应码+短语<ul>
+<li>200 OK：成功，对象在报文</li>
+<li>301 Moved Permanently：被移动过，新报文说明</li>
+<li>400 Bad Request：服务器不懂报文</li>
+<li>404 Not Found</li>
+<li>505 HTTP Version Not Supported：不支持http 协议版本</li>
+</ul>
+</li>
+<li>talent测试<ul>
+<li>talent cis.poly.edu 80</li>
+<li>GET /~ross/ HTTP/1.1<br>Host: cis.poly.edu</li>
+<li>观察返回报文</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>cookie<ul>
+<li>为了辨别用户身份，进行seesion跟踪而存储在用户本地终端上的数据(加密过后)</li>
+<li>组成<ul>
+<li>http响应消息的cookie头部行</li>
+<li>http请求消息的cookie头部行</li>
+<li>保存在客户端主机上的cookie文件（浏览器管理）</li>
+<li>web服务器的后台数据库</li>
+</ul>
+</li>
+<li>原理<ul>
+<li>第一次：客户发出请求报文，服务器设置一个cookie（加在响应报文中），告诉客户和数据库</li>
+<li>之后：客户请求报文，给出cookie，直接访问后台数据库</li>
+</ul>
+</li>
+<li>用处<ul>
+<li>身份认证，购物车，推荐，web-email</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>web缓存/代理服务器技术<ul>
+<li>不访问服务器，满足客户端http请求</li>
+<li>优点<ul>
+<li>缩短客户请求的响应时间</li>
+<li>减少机构/组织的流量</li>
+<li>大范围内实现有效的内容分发</li>
+</ul>
+</li>
+<li>缓存/代理服务器<ul>
+<li>用户向代理发出请求，代理有就返回，没有就问原始服务器</li>
+<li>缓存服务器既充当客户端，也充当服务器</li>
+<li>一般由ISP架设</li>
+</ul>
+</li>
+<li>局域网利用率、接入互联网的链路利用率</li>
+<li>总延迟=互联网延迟（服务器查找延迟2s）+访问延迟(如果互联网链路利用率太大，访问延迟很大，排队(几分钟或者10微秒)))+局域网延迟（几微秒）=2s+几分钟+几微秒</li>
+<li>安装web缓存；假设命中率为0.4<ul>
+<li>40%有请求立刻满足；60%的请求通过原始服务器满足</li>
+<li>接入互联网的链路利用率下降到60%，延迟忽略不计（访问延迟）</li>
+<li>总的平均延迟=0.6<em>2.01s+0.4</em>n微秒&lt;1.4s</li>
+</ul>
+</li>
+<li>条件性get方法<ul>
+<li>如果缓存有最新的版本，则不需要发送请求对象</li>
+<li>在http请求信息中声明所持有的版本的日期 if-modified-since:<date></li>
+<li>服务器：如果缓存的版本是最新的，则响应消息中不包含对象：HTTP/1.0 304 Not Modified<h4 id="2-3-因特网中的电子邮件"><a href="#2-3-因特网中的电子邮件" class="headerlink" title="2.3 因特网中的电子邮件"></a>2.3 因特网中的电子邮件</h4></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>用户代理<ul>
+<li>写作、编辑、阅读邮件报文</li>
+<li>与服务器交互，收发email消息</li>
+</ul>
+</li>
+<li>邮件服务器<ul>
+<li>邮箱：存储发给该用户的email</li>
+<li>消息队列：存储等待发送的email</li>
+</ul>
+</li>
+<li>STMP(持续连接)<ul>
+<li>邮件服务器之间传递消息所使用的协议</li>
+<li>客户端：将邮件发送到邮件服务器</li>
+<li>服务器：接收和转发邮件</li>
+<li>TCP port25</li>
+<li>传输过程的三个阶段：握手、消息传输、关闭</li>
+<li>命令/响应式交互：命令：（7-bit ASCII）ASCII文本；响应：状态码和短语</li>
+<li>交互过程<ul>
+<li>HELO、MAIL FROM &lt;&gt;、RCPT TO &lt;&gt;、DATA 、QUIT</li>
+<li>220(等待)、250（接收）、354（发送data）、221（关闭）</li>
+</ul>
+</li>
+<li>使用CRLF.CRLF作为结束符</li>
+<li>SMTP vs HTTP<ul>
+<li>使用ASCII 命令/响应交互 状态码</li>
+<li>HTTP：每个对象封装在独立的响应消息中、SMTP：多个对象在一个多分部的报文中传送</li>
+<li>HTTP拉、SMTP推</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>SMTP消息格式<ul>
+<li>SMTP：email消息的传输/交换协议<ul>
+<li>RFC 822:文件消息格式标准</li>
+<li>头部行：TO、From、Subject</li>
+<li>消息体：消息本身、只能是ASCII</li>
+</ul>
+</li>
+<li>MIME：多媒体邮件扩展 RFC：2045、2056<ul>
+<li>From、To、Subject、MIME-Version、Content-Transfer-Encoding（数据编码方法）、Content-Type（多媒体类型）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>邮件访问协议<ul>
+<li>POP：认证/授权和下载</li>
+<li>IMAP：能够操纵服务器上的存储消息</li>
+<li>HTTP：163 QQ MAIL</li>
+</ul>
+</li>
+<li>POP协议<ul>
+<li>客户端<ul>
+<li>user+用户</li>
+<li>pass+密码</li>
+</ul>
+</li>
+<li>服务器响应<ul>
+<li>+OK</li>
+<li>-ERR</li>
+</ul>
+</li>
+<li>事物阶段<ul>
+<li>list：列出消息数量</li>
+<li>retr：用编号获取信息</li>
+<li>dele：删除信息</li>
+<li>quit</li>
+</ul>
+</li>
+<li>下载并删除模式：如果客户欢乐客户端，无法重新读</li>
+<li>下载并保持模式：不同客户端都可以保留信息拷贝</li>
+<li>POP3无状态</li>
+</ul>
+</li>
+<li>IMAP协议<ul>
+<li>所有信息统一保存在服务器</li>
+<li>允许用户利用文件夹组织消息</li>
+<li>支持跨会话的用户状态<ul>
+<li>文件夹的名字</li>
+<li>文件夹和消息ID之间的映射等等<h4 id="2-4-DNS：因特网的目录服务"><a href="#2-4-DNS：因特网的目录服务" class="headerlink" title="2.4 DNS：因特网的目录服务"></a>2.4 DNS：因特网的目录服务</h4></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>解决域名和IP地址之间的映射关系</li>
+<li>服务内容<ul>
+<li>域名向IP地址的翻译</li>
+<li>主机别名</li>
+<li>邮件服务器别名</li>
+<li>负载均衡：web服务器</li>
+</ul>
+</li>
+<li>分布式层次式数据库<ul>
+<li>根服务器:13台<ul>
+<li>不知道映射，访问权威域名服务器</li>
+<li>向本地域名服务器返回映射</li>
+<li>获得映射</li>
+</ul>
+</li>
+<li>顶级域（TLD）服务器：.com DNS服务器等等<ul>
+<li>国家顶级域名等等</li>
+<li>network solution维护com顶级域名服务器</li>
+<li>educause维护edu顶级域名服务器</li>
+</ul>
+</li>
+<li>权威DNS服务器：edu.cn DNS服务器等等<ul>
+<li>提供组织内部服务器的解析服务</li>
+<li>组织内部维护</li>
+<li>服务提供商维护</li>
+</ul>
+</li>
+<li>本地域名解析服务器<ul>
+<li>每一个ISP有一个本地域名服务器（默认域名解析服务器）</li>
+<li>当主机进行DNS查询的时候，查询发送到本地域名服务器（代理层级式）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DNS查询方法<ul>
+<li>迭代查询：代理每问一次就返回一次结果（我不认识，但是你可问它）（自顶向下查询）</li>
+<li>递归查询：代理问根域名服务器，直接一层层问下去不返回</li>
+</ul>
+</li>
+<li>DNS记录缓存和更新<ul>
+<li>缓存域名——IP映射</li>
+<li>一段时间之后，失效（删除）</li>
+<li>一般会缓存顶级域名服务器的映射（减少根DNS服务器的负载）</li>
+</ul>
+</li>
+<li>DNS记录格式<ul>
+<li>RR 格式：(名字，值，类型，ttl)</li>
+<li>类型<ul>
+<li>A：名字=主机域名；值：IP地址</li>
+<li>CNAME：名字：别名；值：真实域名</li>
+<li>NS：名字：域（edu.cn（权威域））、值：权威域名解析服务器的主机域名</li>
+<li>MX：值是和名字对应的邮件服务器</li>
+</ul>
+</li>
+<li>DNS协议<ul>
+<li>查询和回复消息</li>
+<li>消息格式相同</li>
+<li>16位查询编号，回复相同的编号</li>
+<li>flags：查询或回复、期望递归、递归可用、权威回答<h4 id="2-5-P2P文件分发"><a href="#2-5-P2P文件分发" class="headerlink" title="2.5 P2P文件分发"></a>2.5 P2P文件分发</h4></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>p2p特征：没有服务器、任意端系统之间直接通信、节点“阶段性”接入Internet、节点可能更换IP地址<ul>
+<li>文件分发：(N个文件分发给N个用户)<ul>
+<li>C/S: d=max{NF/us, F/min(di)}</li>
+<li>P2P: dp2p=max{F/us, F/min(di), NF/(us+ui求和)}</li>
+<li>BitTorrent: tracker: 跟踪参与torrent的节点；torrent：交换文件块中的节点组</li>
+<li>文件划分为256kb的chunk<ul>
+<li>节点加入torrent——没有chunk但是会逐渐积累，向tracker注册以获得节点清单，与某些节点（“邻居”）建立连接</li>
+<li>下载的同时，节点要向其他节点上传chunk</li>
+<li>节点可能加入或离开</li>
+<li>节点获得完整文件来，他可能离开或者留下</li>
+</ul>
+</li>
+<li>获取chunk——文件交换块<ul>
+<li>给定任一时刻，不同的节点持有文件的不同chunk集合。</li>
+<li>节点定期查询每个邻居持有的chunk列表</li>
+<li>节点发送请求，请求缺失的chunk（稀缺优先,先向邻居请求最稀缺资源）</li>
+</ul>
+</li>
+<li>发送chunk：tit-for-tat<ul>
+<li>Alice向4个邻居发送chunk——选择正在向其发送chunk且速率最快的4个：每10s重新评估top4</li>
+<li>每30s素以及选择一个其他节点，向其发送chunk：新节点可能加入top4.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h3 id="第3章-运输层"><a href="#第3章-运输层" class="headerlink" title="第3章    运输层"></a>第3章    运输层</h3><h4 id="3-1-概述和运输层服务"><a href="#3-1-概述和运输层服务" class="headerlink" title="3.1 概述和运输层服务"></a>3.1 概述和运输层服务</h4><ul>
 <li>运输层：不同进程、逻辑通信（只考虑点到点，不考虑点和点之间的具体构造）</li>
@@ -1015,7 +1269,7 @@
 <li>OSPF将AS再划分为若干个更小的范围，叫做区域</li>
 <li>每个区域有32 bit标识符</li>
 <li>一个区域内的路由器不超过200个</li>
-<li>区域划分                                                                                                                                                                                                                                                                                                                                                    <ul>
+<li>区域划分                                 <ul>
 <li>两级分层：（局部）区域、主干区（局部区域只知道去往其他网络区域的方向/最短路）</li>
 <li>边界区域路由器：“汇总“到达所在区网络的距离，通告给其他区边界路由器</li>
 <li>主干路由器：在主干区内运行OSPF算法</li>
@@ -1314,18 +1568,271 @@
 </li>
 </ul>
 </li>
+<li>数据帧最小长度L，信号传播速度V(m/s)<ul>
+<li>L/R&gt;=2dmax/V (在A信号回传成功之前，B的数据不可以发出来)</li>
+<li>效率<ul>
+<li>Tprop=LAN两个节点间的最大传播延迟</li>
+<li>Ttrans=最长帧传输延迟<br>效率=1/(1+5tprop/ttrans)</li>
+<li>tprop趋近于0或者ttrans趋近于无穷的时候，效率趋近于1</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h4 id="6-4-交换局域网"><a href="#6-4-交换局域网" class="headerlink" title="6.4 交换局域网"></a>6.4 交换局域网</h4><h4 id="6-7-回顾：Web页面请求的历程"><a href="#6-7-回顾：Web页面请求的历程" class="headerlink" title="6.7 回顾：Web页面请求的历程"></a>6.7 回顾：Web页面请求的历程</h4><h3 id="第7章-无线网络和移动网络"><a href="#第7章-无线网络和移动网络" class="headerlink" title="第7章    无线网络和移动网络"></a>第7章    无线网络和移动网络</h3><h4 id="7-1-概述"><a href="#7-1-概述" class="headerlink" title="7.1 概述"></a>7.1 概述</h4><ul>
+</li>
+</ul>
+</li>
+<li><p>轮转访问协议</p>
+<ul>
+<li>信道划分协议：负载重，效率高且公平；负载轻，效率低</li>
+<li>随机访问mac协议：负载轻，共享信道效率高（单个节点全部带宽）;负载重产生严重开销</li>
+<li>轮询(polling): 主节点轮流邀请从属节点发送数据。典型应用：“哑”从属设备<ul>
+<li>问题：轮询开销、等待延迟、单点故障</li>
+</ul>
+</li>
+<li>令牌传递：依次从一个节点传递到下一个节点。令牌——特殊帧</li>
+</ul>
+</li>
+<li><p>mac协议总结</p>
+<ul>
+<li>随机访问mac协议：用于以太网、802.11无线局域网</li>
+<li>轮转访问mac协议：蓝牙、令牌环网<h4 id="6-4-交换局域网"><a href="#6-4-交换局域网" class="headerlink" title="6.4 交换局域网"></a>6.4 交换局域网</h4></li>
+</ul>
+</li>
+<li><p>32位的IP地址</p>
+<ul>
+<li>接口的网络层地址</li>
+<li>用于标识网络层分组，支持分组转发</li>
+</ul>
+</li>
+<li><p>MAC地址（LAN地址、物理地址、以太网地址）</p>
+<ul>
+<li>48位（用于大部分LANs），固化在网卡的ROM中。FF-FF-FF-FF-FF-FF</li>
+<li>作用：用于局域网内标识一个帧从哪个接口，到达哪个物理相连的其他接口</li>
+<li>每一块网卡都有一个唯一的MAC地址</li>
+<li>MAC地址由IEEE统一管理和分配</li>
+<li>网卡生产上购买MAC地址空间的前24bit</li>
+<li>MAC地址是平面地址：可以携带，从一个LAN到另外一个LAN</li>
+<li>IP不可携带，IP地址依赖于节点连接到哪个子网</li>
+</ul>
+</li>
+<li><p>ARP地址解析协议</p>
+<ul>
+<li>解决问题：同一个LAN内，如何在已经知道目的接口IP地址的前提下确定其MAC地址。</li>
+<li>ARP表：LAN中的每个IP结点（主机、路由器）维护一个表<ul>
+<li>&lt;IP，MAC，TTL&gt;</li>
+<li>TTL：经过这个事件后该映射关系会被遗弃</li>
+</ul>
+</li>
+<li>同一局域网内，A要给B发送数据报<ul>
+<li>B的MAC地址不再A的ARP表中。</li>
+<li>A广播ARP查询分组，其中包含B的IP地址<ul>
+<li>目的FF-FF-FF-FF-FF-FF</li>
+<li>LAN中所有节点都会接收ARP查询</li>
+</ul>
+</li>
+<li>B接收ARP查询分组，IP地址匹配成功，向A应答B的MAC地址：用单波帧向A发送应答</li>
+<li>A在其ARP标中，缓存B的IP-MAC配对，超时后，再次刷新</li>
+<li>ARP即插即用，自主创建ARP表，无需干预</li>
+</ul>
+</li>
+<li>从以一个LAN到另一个LAN(A到B)<ul>
+<li>A构造IP数据报，其中源IP是A的IP地址，目的IP地址是B的IP地址</li>
+<li>A构造数据链路层帧，其中源MAC地址是A的MAC地址，目的MAC地址是路由器左接口的MAC地址，封装数据报</li>
+<li>帧从A发送至R</li>
+<li>R接收帧，提取IP数据报，传递给上层IP协议</li>
+<li>R转发IP数据报，创建链路层帧，其中源MAC地址是R右接口的MAC地址，目的MAC地址是B的MAC地址，封装A到B的IP数据报。（其中源和目的地址不变）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>以太网</p>
+<ul>
+<li>造价低廉、运用广泛的占有“统治地位”的有线LAN技术</li>
+<li>物理拓扑<ul>
+<li>总线：上世纪90年代中期流行，所有节点在同一冲突域</li>
+<li>星型结构：目前主楼的网络拓扑<ul>
+<li>中心交换机</li>
+<li>每一个节点一个单独的冲突域（节点彼此不冲突）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>以太网：不可靠、无连接服务<ul>
+<li>无连接：发送帧的网卡和接收帧的网卡不“握手”</li>
+</ul>
+</li>
+<li>不可靠：接收网卡不想发送网卡确认<br>  差错帧直接丢弃，丢弃帧中的数据恢复依靠高层协议</li>
+<li>以太网采用的MAC协议：指数退避算法的CSMA/CD<ul>
+<li>如果NIC检测到其他节点传输数据，则终止发送，并发送堵塞信号jam signal</li>
+<li>终止发送后，NIC进行二次指数退避<ul>
+<li>第m次连续冲突后<ul>
+<li>取n=max(m,10)</li>
+<li>NIC从0～2^n-1中随机选择一个数K</li>
+<li>NIC等待K*512比特的传输延迟时间，再返回第2步</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>连续冲突的次数越多，平均等待时间越长</li>
+</ul>
+</li>
+<li>以太网帧结构<ul>
+<li>发送端网卡将IP数据报（或其他网络层协议分组）封装到以太网帧中</li>
+<li>前导码（8B）（Preamble）：7个字节的10101010，第8字节为10101011（用于发送端与接受端的时钟同步）</li>
+<li>目的MAC地址、源MAC地址：各6B<ul>
+<li>如果网卡的MAC地址与收到的帧的目的MAC地址匹配，或者帧的目的MAC地址为广播地址FF-FF-FF-FF-FF-FF，则网卡接收该帧，并将其封装的网络层分组交给相应的网络层协议</li>
+<li>类型（Type 2B）：指示帧中封装的是哪种高层协议的分组（如IP数据报、Novell IPX数据报、AppleTalk数据报）</li>
+<li>数据Data(46B-1500B——MTU)：指上层协议载荷<ul>
+<li>Datamin=46B</li>
+<li>Lmin=64B</li>
+<li>Datamin=64B-12B-2B-4B</li>
+<li>CRC（4B）：循环冗余校验码(丢弃差错帧)</li>
+<li>许多不同的以太网标准<ul>
+<li>相同的MAC协议和帧格式</li>
+<li>不同速率：2Mbps，10Mbps，100Mbps，1Gbps，10Gbps</li>
+</ul>
+</li>
+<li>不同物理介质：光纤、电缆</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>以太网交换机</p>
+<ul>
+<li>链路层设备<ul>
+<li>存储——转发以太网帧</li>
+<li>检验到达帧的目的MAC地址，选择性向一个或多个链路发送帧</li>
+<li>利用CSMA/CD访问链路，发送帧。</li>
+</ul>
+</li>
+<li>透明：主机感知不到交换机的存在</li>
+<li>即插即用</li>
+<li>自学习：交换机无需配置</li>
+<li>多端口同时传输<ul>
+<li>主机利用独享的链路直接连接交换机</li>
+<li>交换机缓存帧</li>
+<li>交换机在每一段链路上利用CSMA/CD发送帧，但无冲突，且可以全双工（每段链路一个独立的冲突域）</li>
+<li>交换：A-A’与B-B’的传输可以同时进行，没有冲突(一台交换机上可以支持多个交换)</li>
+</ul>
+</li>
+<li>交换机转发表：交换表<ul>
+<li>(主机mac，接口，时间戳)</li>
+</ul>
+</li>
+<li>自学习<ul>
+<li>帧到达的时候，交换机学习通过源MAC地址学习到了主机MAC，学习到了该帧的接口。</li>
+</ul>
+</li>
+<li>交换机：帧过滤/转发<ul>
+<li>交换机收到帧，记录帧的源MAC和输入链路接口</li>
+<li>利用目的MAC检索交换表</li>
+<li>如果有匹配的目的MAC<ul>
+<li>如果目的主机位于收到帧的网段，丢弃帧（没必要通过交换机）</li>
+<li>否则将帧转发到该入口指向的接口</li>
+</ul>
+</li>
+<li>如果没有匹配MAC，泛洪，自学习。</li>
+</ul>
+</li>
+<li>交换机vs路由器：<ul>
+<li>两者均为存储-转发设备<ul>
+<li>路由器：网络层设备（检测网络层分组首部）</li>
+<li>交换机：链路层设备（检测链路层帧的首部）</li>
+</ul>
+</li>
+<li>两者均使用转发表<ul>
+<li>路由器：利用路由算法设置，根据IP</li>
+<li>利用自学习、泛洪构建，依据MAC地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>虚拟局域网VLAN</p>
+<ul>
+<li>支持VLAN划分的交换机，可以在一个物理LAN架构上配置、定义多个VLAN。</li>
+<li>基于端口的VLAN：通过交换机管理软件，管理分组交换机的端口。</li>
+<li>流量隔离：<ul>
+<li>来自/去往1-8的帧只到达端口1-8（也可以基于MAC地址定义VLAN，而不是交换端口）</li>
+</ul>
+</li>
+<li>动态成员：<ul>
+<li>端口可以动态分配给不同VLAN</li>
+</ul>
+</li>
+<li>在VLAN之间转发：通过路由（就像在独立的交换机之间）</li>
+<li>跨越多交换机的VALN<ul>
+<li>多缆线连接（每个缆线连接一个VLAN）</li>
+<li>中继端口：在跨越多个物理交换机定义的VALN承载帧<ul>
+<li>802.1q协议为经过中继端口转发的帧增加/去除额外的首部域。</li>
+<li>为多VLAN转发802.1帧容易产生歧义（必须携带VALN ID）</li>
+</ul>
+</li>
+<li>802.1Q VLAN格式<ul>
+<li>比普通的以太网帧增加2字节的标记协议ID（固定值0x8100）</li>
+<li>2字节的标记控制信息（12bit的VLAN ID；3bit的优先级字段）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>PPP协议</p>
+<ul>
+<li>点对点数据链路控制<ul>
+<li>一个发送端，一个接受端，一条链路；比广播链路容易<ul>
+<li>无需介质访问控制</li>
+<li>无需明确的MAC地址</li>
+<li>拨号链路、ISDN链路</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>常见的点对点数据链路控制协议：<ul>
+<li>HDLC：High Level Data Link Control</li>
+<li>PPP：point-to-point portocol</li>
+</ul>
+</li>
+<li>PPP的需求<ul>
+<li>组帧、比特透明传输、差错检测、连接活性检测（检测、并向网络层通知链路失效）、网络层地址协商（端节点可以学习/配置彼此网络地址）。</li>
+<li>无需支持：差错纠正、流量控制、支持多点链路、无乱序交付</li>
+</ul>
+</li>
+<li>PPP数据帧<ul>
+<li>标志（1B）(前后都有，用于定界)、地址（无效）（1B）、控制（无效）（1B）、协议（上层协议，如IP）（1or2 B）、信息（上层协议分组数据）（变长）、校验（CRC）（2or4 B）</li>
+</ul>
+</li>
+<li>字节填充<ul>
+<li>核心问题：字串01111110是应该作为数据接收还是作为标志处理</li>
+<li>发送端：在数据中的01111110和01111101字节前添加额外的字节01111101</li>
+<li>接收端：单个字节01111101表示一个填充字节；连续接收两个字节01111101，丢弃第一个，第二个作为数据接收；单个字节01111110为标志字节</li>
+</ul>
+</li>
+<li>PPP数据控制协议<ul>
+<li>在交换网络层数据之前，PPP数据链路两端必须<ul>
+<li>配置PPP链路：最大帧长、身份认证</li>
+<li>学习/配置网络层信息：对于IP协议：通过交换IPCP协议报文完成IP地址配置（IP分组首部的上层协议字段取值：8021）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="6-7-回顾：Web页面请求的历程"><a href="#6-7-回顾：Web页面请求的历程" class="headerlink" title="6.7 回顾：Web页面请求的历程"></a>6.7 回顾：Web页面请求的历程</h4></li>
+</ul>
+</li>
+</ul>
+<h3 id="第7章-无线网络和移动网络"><a href="#第7章-无线网络和移动网络" class="headerlink" title="第7章    无线网络和移动网络"></a>第7章    无线网络和移动网络</h3><h4 id="7-1-概述"><a href="#7-1-概述" class="headerlink" title="7.1 概述"></a>7.1 概述</h4><ul>
 <li>元素：无线主机、无线链路（连接无限主机和基站）、基站</li>
 <li>基础设施模式：固定基础设施、自组网络</li>
 <li>切换：移动主机的移动-&gt;改变与之关联的基站</li>
 <li>关联：无线主机位于某个基站的无线通信覆盖范围内、该主机使用该基站中继它与更大网络兼的数据</li>
 <li>基础设施模式、自主网(ad hoc)模式</li>
-<li>Ad hoc：无基站、节点仅能够在其覆盖范围内向其他节点传送数据、节点之间相互通信组成临时网络，内部选路地址分配</li>
+<li>Ad hoc：无基站、节点仅能够在其覆盖范围内向其他节点传送��据、节点之间相互通信组成临时网络，内部选路地址分配</li>
 <li>噪声差错<ul>
 <li>SNR——信噪比</li>
 <li>BER——比特差错率</li>
@@ -1422,4 +1929,12 @@
 </ul>
 </li>
 </ul>
-</div><div class="post-copyright"><blockquote><p>原文作者: Waylon Ding</p><p>原文链接: <a href="/blog/www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes/">www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes/</a></p><p>版权声明: 转载请注明出处(必须保留作者署名及链接)</p></blockquote></div><div class="tags"><a href="/blog/tags/System-Network/">System &amp; Network</a><a href="/blog/tags/Computer-Network/">Computer Network</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/blog/2019/11/19/OpeartingSystem-Notes/" class="pre">OpeartingSystem Notes</a><a href="/blog/2019/11/18/QT%20creator%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8ETCP%E4%BC%A0%E8%BE%93%E8%AF%95%E9%AA%8C/" class="next">QT creator的使用与TCP传输试验</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#计算机网络-自顶向下-学习笔记-amp-计算机通信与网络课程复习"><span class="toc-text">计算机网络-自顶向下 学习笔记 &amp; 计算机通信与网络课程复习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第1章-计算机网络和因特网"><span class="toc-text">第1章 计算机网络和因特网</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-什么是因特网"><span class="toc-text">1.1 什么是因特网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-网络边缘"><span class="toc-text">1.2 网络边缘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-网络核心"><span class="toc-text">1.3 网络核心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-分组交换网中的时延、丢包和吞吐量"><span class="toc-text">1.4 分组交换网中的时延、丢包和吞吐量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-协议层次及服务模型"><span class="toc-text">1.5 协议层次及服务模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第2章-应用层"><span class="toc-text">第2章    应用层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-应用层协议原理"><span class="toc-text">2.1 应用层协议原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-Web和HTTP"><span class="toc-text">2.2 Web和HTTP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-因特网中的电子邮件"><span class="toc-text">2.3 因特网中的电子邮件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-DNS：因特网的目录服务"><span class="toc-text">2.4 DNS：因特网的目录服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-P2P文件分发"><span class="toc-text">2.5 P2P文件分发</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第3章-运输层"><span class="toc-text">第3章    运输层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-概述和运输层服务"><span class="toc-text">3.1 概述和运输层服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-多路复用与多路分解"><span class="toc-text">3.2 多路复用与多路分解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-无连接运输：UDP"><span class="toc-text">3.3 无连接运输：UDP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-可靠数据传输原理"><span class="toc-text">3.4 可靠数据传输原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-面向连接的运输：TCP"><span class="toc-text">3.5 面向连接的运输：TCP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-拥塞控制原理"><span class="toc-text">3.6 拥塞控制原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-TCP拥塞控制"><span class="toc-text">3.7 TCP拥塞控制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第4章-网络层：数据平面"><span class="toc-text">第4章    网络层：数据平面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-网络层概述"><span class="toc-text">4.1 网络层概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-路由器工作原理"><span class="toc-text">4.2 路由器工作原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-网际协议：IPv4、寻址、IPv6及其他"><span class="toc-text">4.3 网际协议：IPv4、寻址、IPv6及其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第5章-网络层：控制平面"><span class="toc-text">第5章    网络层：控制平面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-概述"><span class="toc-text">5.1 概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-路由选择算法"><span class="toc-text">5.2 路由选择算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-因特网中自治系统内部的路由选择：OSPF"><span class="toc-text">5.3 因特网中自治系统内部的路由选择：OSPF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-ISP之间的路由选择：BGP"><span class="toc-text">5.4 ISP之间的路由选择：BGP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-6-ICMP：因特网控制报文协议"><span class="toc-text">5.6 ICMP：因特网控制报文协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第6章-链路层和局域网"><span class="toc-text">第6章    链路层和局域网</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-链路层概述"><span class="toc-text">6.1 链路层概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-差错检测和纠正技术"><span class="toc-text">6.2 差错检测和纠正技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-多路访问链路协议"><span class="toc-text">6.3 多路访问链路协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-交换局域网"><span class="toc-text">6.4 交换局域网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-7-回顾：Web页面请求的历程"><span class="toc-text">6.7 回顾：Web页面请求的历程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第7章-无线网络和移动网络"><span class="toc-text">第7章    无线网络和移动网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-概述"><span class="toc-text">7.1 概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-无线链路和网络特征以及802-11无线LAN"><span class="toc-text">7.2 无线链路和网络特征以及802.11无线LAN</span></a></li></ol></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/20/Computing-Theory/">Computing Theory Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/19/OpeartingSystem-Notes/">OpeartingSystem Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/19/ComputerNetwork-Review-Notes/">ComputerNetwork Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/18/QT%20creator%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8ETCP%E4%BC%A0%E8%BE%93%E8%AF%95%E9%AA%8C/">QT creator的使用与TCP传输试验</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/18/hexo%E5%8D%9A%E5%AE%A2%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%A9%E7%94%A8hexo%E5%86%99%E6%96%87%E7%AB%A0/">Build My Personal Blog with Github and Hexo</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CS-Courses/">CS Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">hexo搭建属于自己的博客</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/hexo%E6%8A%80%E6%9C%AF/">hexo技术</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/blog/tags/Formal-language-and-Automata/" style="font-size: 15px;">Formal language and Automata</a> <a href="/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a> <a href="/blog/tags/hexo%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF/" style="font-size: 15px;">hexo相关技术</a> <a href="/blog/tags/markdown%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 15px;">markdown的使用</a> <a href="/blog/tags/Operating-System/" style="font-size: 15px;">Operating System</a> <a href="/blog/tags/System-Network/" style="font-size: 15px;">System & Network</a> <a href="/blog/tags/Computer-Network/" style="font-size: 15px;">Computer Network</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a><span class="archive-list-count">5</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/blog/baidusitemap.xml">网站地图</a> |  <a href="/blog/atom.xml">订阅本站</a> |  <a href="/blog/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/blog/." rel="nofollow">Waylon Ding.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/blog/js/search.json.js?v=2.0.4"></script><script type="text/javascript" src="/blog/js/toctotop.js?v=2.0.4" async></script><link rel="stylesheet" type="text/css" href="/blog/share/css/share.css"><script type="text/javascript" src="/blog/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/blog/share/js/qrcode.js" charset="utf-8"></script></body></html>
+<ol>
+<li>OSI（功能、协议）、时延</li>
+<li>不考</li>
+<li>拥塞reno（审题）、流量控制gbn。</li>
+<li>选址编址、组网、路由转发、OSPF</li>
+<li>CRC</li>
+<li>链路基本特征概念、基本协议、CRC</li>
+</ol>
+</div><div class="post-copyright"><blockquote><p>原文作者: Waylon Ding</p><p>原文链接: <a href="/blog/www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes/">www.waylonding.cn/blog/2019/11/19/ComputerNetwork-Review-Notes/</a></p><p>版权声明: 转载请注明出处(必须保留作者署名及链接)</p></blockquote></div><div class="tags"><a href="/blog/tags/System-Network/">System &amp; Network</a><a href="/blog/tags/Computer-Network/">Computer Network</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/blog/2019/11/19/OpeartingSystem-Notes/" class="pre">OpeartingSystem Notes</a><a href="/blog/2019/11/18/QT%20creator%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8ETCP%E4%BC%A0%E8%BE%93%E8%AF%95%E9%AA%8C/" class="next">QT creator的使用与TCP传输试验</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#计算机网络-自顶向下-学习笔记-amp-计算机通信与网络课程复习"><span class="toc-text">计算机网络-自顶向下 学习笔记 &amp; 计算机通信与网络课程复习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第1章-计算机网络和因特网"><span class="toc-text">第1章 计算机网络和因特网</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-什么是因特网"><span class="toc-text">1.1 什么是因特网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-网络边缘"><span class="toc-text">1.2 网络边缘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-网络核心"><span class="toc-text">1.3 网络核心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-分组交换网中的时延、丢包和吞吐量"><span class="toc-text">1.4 分组交换网中的时延、丢包和吞吐量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-协议层次及服务模型"><span class="toc-text">1.5 协议层次及服务模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第2章-应用层"><span class="toc-text">第2章    应用层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-应用层协议原理"><span class="toc-text">2.1 应用层协议原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-Web和HTTP"><span class="toc-text">2.2 Web和HTTP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-因特网中的电子邮件"><span class="toc-text">2.3 因特网中的电子邮件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-DNS：因特网的目录服务"><span class="toc-text">2.4 DNS：因特网的目录服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-P2P文件分发"><span class="toc-text">2.5 P2P文件分发</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第3章-运输层"><span class="toc-text">第3章    运输层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-概述和运输层服务"><span class="toc-text">3.1 概述和运输层服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-多路复用与多路分解"><span class="toc-text">3.2 多路复用与多路分解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-无连接运输：UDP"><span class="toc-text">3.3 无连接运输：UDP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-可靠数据传输原理"><span class="toc-text">3.4 可靠数据传输原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-面向连接的运输：TCP"><span class="toc-text">3.5 面向连接的运输：TCP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-拥塞控制原理"><span class="toc-text">3.6 拥塞控制原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-TCP拥塞控制"><span class="toc-text">3.7 TCP拥塞控制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第4章-网络层：数据平面"><span class="toc-text">第4章    网络层：数据平面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-网络层概述"><span class="toc-text">4.1 网络层概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-路由器工作原理"><span class="toc-text">4.2 路由器工作原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-网际协议：IPv4、寻址、IPv6及其他"><span class="toc-text">4.3 网际协议：IPv4、寻址、IPv6及其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第5章-网络层：控制平面"><span class="toc-text">第5章    网络层：控制平面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-概述"><span class="toc-text">5.1 概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-路由选择算法"><span class="toc-text">5.2 路由选择算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-因特网中自治系统内部的路由选择：OSPF"><span class="toc-text">5.3 因特网中自治系统内部的路由选择：OSPF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-ISP之间的路由选择：BGP"><span class="toc-text">5.4 ISP之间的路由选择：BGP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-6-ICMP：因特网控制报文协议"><span class="toc-text">5.6 ICMP：因特网控制报文协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第6章-链路层和局域网"><span class="toc-text">第6章    链路层和局域网</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-链路层概述"><span class="toc-text">6.1 链路层概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-差错检测和纠正技术"><span class="toc-text">6.2 差错检测和纠正技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-多路访问链路协议"><span class="toc-text">6.3 多路访问链路协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-交换局域网"><span class="toc-text">6.4 交换局域网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-7-回顾：Web页面请求的历程"><span class="toc-text">6.7 回顾：Web页面请求的历程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第7章-无线网络和移动网络"><span class="toc-text">第7章    无线网络和移动网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-概述"><span class="toc-text">7.1 概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-无线链路和网络特征以及802-11无线LAN"><span class="toc-text">7.2 无线链路和网络特征以及802.11无线LAN</span></a></li></ol></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/2019/12/06/machine-learning/">Machine Learning Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/20/Computing-Theory/">Computing Theory Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/19/OpeartingSystem-Notes/">OpeartingSystem Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/19/ComputerNetwork-Review-Notes/">ComputerNetwork Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/18/QT%20creator%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8ETCP%E4%BC%A0%E8%BE%93%E8%AF%95%E9%AA%8C/">QT creator的使用与TCP传输试验</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/18/hexo%E5%8D%9A%E5%AE%A2%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%A9%E7%94%A8hexo%E5%86%99%E6%96%87%E7%AB%A0/">Build My Personal Blog with Github and Hexo</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CS-Courses/">CS Courses</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">hexo搭建属于自己的博客</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/hexo%E6%8A%80%E6%9C%AF/">hexo技术</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/blog/tags/Formal-language-and-Automata/" style="font-size: 15px;">Formal language and Automata</a> <a href="/blog/tags/Operating-System/" style="font-size: 15px;">Operating System</a> <a href="/blog/tags/System-Network/" style="font-size: 15px;">System & Network</a> <a href="/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a> <a href="/blog/tags/hexo%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF/" style="font-size: 15px;">hexo相关技术</a> <a href="/blog/tags/markdown%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 15px;">markdown的使用</a> <a href="/blog/tags/AI/" style="font-size: 15px;">AI</a> <a href="/blog/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/blog/tags/Computer-Network/" style="font-size: 15px;">Computer Network</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a><span class="archive-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/blog/baidusitemap.xml">网站地图</a> |  <a href="/blog/atom.xml">订阅本站</a> |  <a href="/blog/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/blog/." rel="nofollow">Waylon Ding.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/blog/js/search.json.js?v=2.0.4"></script><script type="text/javascript" src="/blog/js/toctotop.js?v=2.0.4" async></script><link rel="stylesheet" type="text/css" href="/blog/share/css/share.css"><script type="text/javascript" src="/blog/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/blog/share/js/qrcode.js" charset="utf-8"></script></body></html>
