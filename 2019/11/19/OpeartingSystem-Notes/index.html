@@ -511,7 +511,47 @@
 <li>原因和必要条件</li>
 <li>系统模型和死锁的处理</li>
 </ul>
-<h3 id="第六章-主存管理"><a href="#第六章-主存管理" class="headerlink" title="第六章 主存管理"></a>第六章 主存管理</h3><h4 id="6-1-主存管理概述"><a href="#6-1-主存管理概述" class="headerlink" title="6.1 主存管理概述"></a>6.1 主存管理概述</h4><ul>
+<h3 id="第六章-主存管理"><a href="#第六章-主存管理" class="headerlink" title="第六章 主存管理"></a>第六章 主存管理</h3><p>实际的存储体系是三级存储体系：即CPU-&gt;cache-&gt;内存(主存)、辅存<br>    1.<br>    2.<br>    3. 解决程序连续才能运行：装入不同分区（页式、段式存储）</p>
+<ul>
+<li>虚拟内存：较大程序较小内存运行（局部性）——页式、段式、段页式 <ul>
+<li>进程虚拟页（页）、内存物理页（页框）——页（小段1k，2k，4k）</li>
+<li>VA虚拟地址、页号P、页内偏移w、页大小（2^n）（除法、求余）（右移n位、与操作）</li>
+<li>页面映射表（页表）页-页框、页式地址映射（虚拟地址、物理地址、MA=P’*大小+W）</li>
+<li>快表（cache放页表）、慢表是内存：提高快表命中率</li>
+<li>页面的共享：dll（进程代码段共享）（共享区域有：相同页框号）</li>
+<li>缺页（从辅存获取）、页面扩充（带中断位，1不在内存0在；辅存地址）、（访问位，0没有1有；和修改位，0没有1有）、缺页中断（访问位页不在内存）、缺页中断处理程序（调入、重写、选页淘汰、更新页表、更新中断位）、缺页（中断）率=缺页次数/访问页面总次数；命中率=1-缺页率 </li>
+<li>页面抖动（页面在内存和辅存间频繁交换，系统效率下降）、缺页淘汰策略（完成高命中率和少抖动率）。<ul>
+<li>OPT——淘汰最有可能不需要的页面：目前内存中，最远的将来要用到的页面（或者根本就不需要用的）；理论最佳，实际无法实现（无法得知以后会访问什么页面）</li>
+<li>FIFO——淘汰停留时间最长的页面；对于特定序列十分不友好（刚挤出去哪一个下面马上来哪一个，强抖动）有的页面虽然持续时间很长，但是频繁访问，不应该被挤出去，所以有LRU算法</li>
+<li>LRU——淘汰最长时间未被使用的页面：硬件实现：每一个页面设置一个移位寄存器R；访问置1，不访问左移一位；淘汰R最大的页；R位数越多越精确。软件实现（近似算法）：被访问的时候访问位置1，周期性T地置访问位全0；访问位为1，则保留，为0则淘汰。（周期T难以确定，太少0过多，太多1过多）</li>
+<li>LFU——淘汰访问最少的页面。访问计数器，淘汰计数器最小值</li>
+</ul>
+</li>
+<li>缺页因素（淘汰算法、页框数（少容易缺页）、页面大小选择（大浪费内存，小浪费页表（内存）、换页频繁）（典型4k，越小越容易缺页（数据太少））、程序编制方法（循环的方式，逐行分配，逐列分配，局部性好，跳转少））</li>
+<li>页式系统的不足：页面强行划分（无逻辑）、共享不灵活（要共享整个页）、页内碎片（页没占满页框）</li>
+<li>段式（逻辑意义（功能）、段名、长度不定、进程多段组成）（段为单位，段内连续地址，段之间不相邻）。虚拟地址（VA、S、W）。段表SMT（S、L、B）。查询段表由S获取B，MA=B+W。检查越界（W &lt; L）。段的共享</li>
+<li>段式系统的不足：连续空间、段的大小受内存限制、可变长的段难以管理</li>
+<li>页式系统：一维空间；段式系统：二维空间。（区别：长度、意义、共享、可见性、溢出性）</li>
+<li>段页式存储管理：段中划分页。地址构成（段号+段内地址（页号+页偏移））S+P+W。内存按页划分、按页装入。</li>
+<li>段页式的映射机构：每一个进程一个段表、每一个段一个页表、段表给出页表的B和L，页表给出页框p’</li>
+</ul>
+</li>
+<li>Intel CPU的内存结构<ul>
+<li>实模式：20位（1M存储空间）、16位段地址（4位对齐）、16位偏移地址</li>
+<li>保护模式：32位（4G）、支持多任务和任务切换和上下文保护、进程隔离、进程隔离（4g独立封闭空间（保护内核和其他进程））、支持分段机制和分页机制、增加寄存器（段寄存器没有扩展）<ul>
+<li>CR0控制寄存器：PE——0实际模式、1保护模式；PG允许分页（一尾一头）</li>
+<li>CR2控制寄存器：引发缺页的线性地址</li>
+<li>CR3:页目录基址（记录高20位，4K对齐，低12位为0）</li>
+</ul>
+</li>
+<li>逻辑地址（段:偏移）、线性地址（逻辑地址转换得到）、物理地址（未分页=线性地址；分页=页式地址转化）</li>
+<li>段机制：逻辑-&gt;线性、分页机制：线性-&gt;物理。由MMU执行地址映射过程</li>
+</ul>
+</li>
+<li>Intel CPU的段机制<ul>
+<li><h4 id="6-1-主存管理概述"><a href="#6-1-主存管理概述" class="headerlink" title="6.1 主存管理概述"></a>6.1 主存管理概述</h4></li>
+</ul>
+</li>
 <li>主存分片共享</li>
 <li>程序的逻辑组织（一维地址和二维地址）<h4 id="6-2-主存管理功能"><a href="#6-2-主存管理功能" class="headerlink" title="6.2 主存管理功能"></a>6.2 主存管理功能</h4></li>
 <li>虚拟存储器</li>
@@ -538,7 +578,28 @@
 <li>扩充段表功能</li>
 <li>段页式存储管理</li>
 </ul>
-<h3 id="第七章-设备管理（I-O管理）"><a href="#第七章-设备管理（I-O管理）" class="headerlink" title="第七章 设备管理（I/O管理）"></a>第七章 设备管理（I/O管理）</h3><h4 id="7-1-设备管理概述"><a href="#7-1-设备管理概述" class="headerlink" title="7.1 设备管理概述"></a>7.1 设备管理概述</h4><ul>
+<h3 id="第七章-设备管理（I-O管理）"><a href="#第七章-设备管理（I-O管理）" class="headerlink" title="第七章 设备管理（I/O管理）"></a>第七章 设备管理（I/O管理）</h3><ul>
+<li>缓冲（不同速度，平滑过渡）。硬件缓冲（存储装置）和软件缓冲（临时I/Os护具的一块存储区域）。</li>
+<li>输入缓存（请求、送数据、请求数据（后两者同步）、buf空调用，重新填满）、输出缓存（请求、送数据、写满输出（后两者同步）、来不及腾出就输出等待）。共享缓存（get、put、copy）。</li>
+<li>缓冲意义（生产者与消费者的差异、协调传输数据大小不一样的设备（分组报文）、数据中间拷贝的缓存、提高并行度）。</li>
+<li>双缓冲（双缓冲输入、双缓冲输出、双缓冲同时用于输入输出）、环形缓冲（若干缓冲连接起来变成一个环、in、out、start（输入，判断in、out是否相同，不相同则送入in缓冲区）（输出，判断in、out是否相等，不相同则送入输出out缓冲区，将out移到下一个out））、缓冲池（UNIX系统的缓冲管理）<ul>
+<li>UNIX系统的缓冲区管理（缓冲池）<ul>
+<li>加快系统响应、增强系统吞吐量、减少对磁盘的I/O操作次数</li>
+<li>尽可能多的利用保存在缓冲区中的数据；预先缓存、延迟发送<ul>
+<li>先读cache，后调用主存，缓存cache</li>
+<li>先写cache、延迟写磁盘到非写不可</li>
+</ul>
+</li>
+<li>缓冲数组+缓冲首部=一个缓冲区；一个缓冲区的数据与辅存上一个磁盘块中的数据对应<ul>
+<li>首部=设备号dev+块号blkno（相对于第0块的块号）+状态flag（busy忙、ave有效位、delwr延迟写、write写标志、read读标志、wait等待位）</li>
+</ul>
+</li>
+<li>空闲缓冲队列（av链、双向链表、busy=1）、设备缓冲队列（多个设备多个缓冲队列、b类指针）。实际上av链应该就对应cache</li>
+<li>缓冲算法（一个buf被分配用于读/写某设备上的块的时候：busy=1，进入对应b链，不在av链，读写结束后，busy=0，进入av链的队尾，且delwr=1；需要一个空闲缓冲区，LRU算法；有一个标有延迟写的缓冲区到空闲队头的时候：提出I/O，写到对应磁盘块上，空闲队列移除，留在设备缓冲队列，写完后再次进入空闲队列头）<h4 id="7-1-设备管理概述"><a href="#7-1-设备管理概述" class="headerlink" title="7.1 设备管理概述"></a>7.1 设备管理概述</h4></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>设备管理的功能</li>
 <li>设备的独立性</li>
 <li>设备控制块<h4 id="7-2-缓冲技术"><a href="#7-2-缓冲技术" class="headerlink" title="7.2 缓冲技术"></a>7.2 缓冲技术</h4></li>
@@ -554,7 +615,145 @@
 <li>输入/输出子系统</li>
 <li>输入/输出控制的例子<br>（以设备处理进程方式为例讨论I/O的控制过程）</li>
 </ul>
-<h3 id="第八章-文件系统"><a href="#第八章-文件系统" class="headerlink" title="第八章 文件系统"></a>第八章 文件系统</h3><h4 id="8-1-文件系统概述"><a href="#8-1-文件系统概述" class="headerlink" title="8.1 文件系统概述"></a>8.1 文件系统概述</h4><ul>
+<h3 id="第八章-文件系统"><a href="#第八章-文件系统" class="headerlink" title="第八章 文件系统"></a>第八章 文件系统</h3><ul>
+<li>信息存取的一种的重要组织形式<ul>
+<li>若干个信息项（字节、结构化数据）、读写指针；通过文件名存储文件</li>
+<li>系统文件、库文件、用户文件</li>
+<li>只读文件、读写文件、不保护文件</li>
+<li>普通文件、目录文件（记录目录里面的文件列表信息）（文件名、文件存放地址、文件属性）、设备文件（设备当文件管理和使用）</li>
+</ul>
+</li>
+<li>文件的属性：文件类型、操作特性、存取保护等一组信息（存放在目录文件中）<ul>
+<li>MS-DOS中，文件属性占目录项的一个字节（最后一位为1只读，倒是第二位为1隐藏）</li>
+</ul>
+</li>
+<li>文件系统：负责管理文件的机构<ul>
+<li>功能：文件的创立、撤销、读写、修改、复制、存取控制；管理存放文件的存储设备（空间分配，存取）</li>
+<li>目的：让用户以文件名来存取文件</li>
+</ul>
+</li>
+<li>文件结构<ul>
+<li>逻辑结构：用户观点<ul>
+<li>为用户提供逻辑清晰、使用方便的文件；强调文件信息项的构成方式和用户存取方式</li>
+<li>记录式文件：结构化数据——文件中保存记录长度、数量等说明信息，浪费存储空间</li>
+<li>流式文件——信息项是字节，文件长度是字节的数量<ul>
+<li>无需额外说明信息或者控制信息，节省存储空间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>物理结构：系统的观点<ul>
+<li>文件在存储设备上或者硬盘上的存储结构，强调合理利用存储空间，缩短I/O存取时间。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>文件存取方法<ul>
+<li>顺序存取：按照信息项排列一次存取（读写指针）</li>
+<li>随机存取：直接存取（指定位置）<ul>
+<li>对流式文件或记录为定长的记录式文件容易确定存取位置</li>
+<li>记录不定长的记录式文件定位麻烦（从第一条记录开始查询，直到找到要存取的记录为止、建立索引）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>文件的物理结构——文件在存储设备上的存储方式（合理利用存储空间，缩短I/O存取时间）<ul>
+<li>连续文件<ul>
+<li>按照逻辑块连续地放在物理块</li>
+<li>文件目录记录文件名、文件长度（块数）、第一个存储的物理块号</li>
+<li>特点：建立时候给出文件的最大长度（块数）并登记起始位置（第一个块号）<ul>
+<li>简单、支持顺序和随机、顺序存取速度快</li>
+<li>文件不易动态增长，预留空间产生浪费（需要重新分配和移动）、不利于文件插入和删除、有外部碎片的问题</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>索引结构<ul>
+<li>文件存放在不连续的存储块中</li>
+<li>索引表：逻辑块-&gt;物理存储块</li>
+<li>文件目录：文件名-&gt;索引块</li>
+<li>特点<ul>
+<li>文件=索引区+数据区；</li>
+<li>先访问索引再访问数据</li>
+<li>支持顺序存取和随机存取</li>
+<li>支持文件动态增长、插入、删除 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>串联文件<ul>
+<li>存放在不连续的储存块中</li>
+<li>每个存储块有一个指针，下一个存储块</li>
+<li>文件目录：文件名、第一个存储块的块号</li>
+<li>特点：适合顺序存取（随机存取困难）、提高磁盘利用率（不存在外部碎片）、利于动态扩充插入和删除。<ul>
+<li>缺点：速度慢、不适合随机存取、next指针出错、next之战占用空间</li>
+<li>应用：FAT文件系用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>FAT文件系统(文件分配表)<ul>
+<li>指针为FFFF代表结束</li>
+<li>FAT表：将next的有序集放在FAT表中</li>
+<li>文件访问过程<ul>
+<li>访问文件目录：<ul>
+<li>找首块</li>
+<li>访问FAT寻找下一块的块号FAT(i)。i是当前块的块号。</li>
+<li>FAT(i)=FFFF文件结束</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>读文件的时候先读FAT表，影响使用效率</li>
+<li>FAT表要占用存储空间：存储块有2^n块，FAT表有2^n个元素，每一项至少需要N位的位宽。</li>
+</ul>
+</li>
+<li>扇区——磁盘上最小的可寻址单元(512B)</li>
+<li>簇(cluster)=存储块——最小存取单元，有固定数量的扇区（硬盘容量越大，一个簇的扇区越多）</li>
+<li>FAT表中元素数目和簇的数目一样多<ul>
+<li>FAT8：N=8，标识2^8=256个簇</li>
+<li>FAT12：N=12，标识2^12=4096个簇</li>
+<li>FAT16：N=16，标识2^16=64K个簇</li>
+<li>FAT32：N=32，标识2^32=4g个簇</li>
+</ul>
+</li>
+<li>磁盘容量=FAT长度<em>簇容量=FAT长度</em>簇扇区数*512B</li>
+<li>FAT16系统：以簇为段位管理磁盘，簇是扇区的倍数，是2的次幂，最大64扇区<ul>
+<li>扇区512B，簇32KB（64扇区）</li>
+<li>FAT表元素宽度2字节</li>
+<li>每簇最大64扇区，磁盘分区最大2g。</li>
+<li>FAT16格式化的磁盘：启动扇区、FAT1、FAT2、根目录、其他目录和文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>文件存储管理<ul>
+<li>功能：记录磁盘使用情况、管理和分撇、回收存储空间<ul>
+<li>记录磁盘空闲块——连续空闲区看成一个特殊文件，由多个连续空闲块组成<ul>
+<li>空闲文件目录——第一个空闲块号+空闲块个数</li>
+<li>空闲块链<ul>
+<li>所有空闲块连接在一起</li>
+<li>申请时候，链头开始搜索所需空闲块</li>
+<li>回收空闲块时，释放的空闲块逐个加在链尾。</li>
+</ul>
+</li>
+<li>位示图——1可用、0占用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>文件目录——文件名、存放地址、文件属性<ul>
+<li>目录文件：文件目录以文件的形式存于外存，叫做目录文件</li>
+</ul>
+</li>
+<li>文件的保护（权限）</li>
+<li>文件目录操作</li>
+<li>典型文件系统<h4 id="8-1-文件系统概述"><a href="#8-1-文件系统概述" class="headerlink" title="8.1 文件系统概述"></a>8.1 文件系统概述</h4></li>
 <li>文件</li>
 <li>文件系统</li>
 <li>文件的组织<h4 id="8-2-文件的逻辑结构和存取方法"><a href="#8-2-文件的逻辑结构和存取方法" class="headerlink" title="8.2 文件的逻辑结构和存取方法"></a>8.2 文件的逻辑结构和存取方法</h4></li>
@@ -583,4 +782,128 @@
 <li>文件存储器空闲块的管理</li>
 <li>UNIX文件系统调用</li>
 </ul>
-</div><div class="post-copyright"><blockquote><p>原文作者: Waylon Ding</p><p>原文链接: <a href="/blog/www.waylonding.cn/blog/2019/11/19/OpeartingSystem-Notes/">www.waylonding.cn/blog/2019/11/19/OpeartingSystem-Notes/</a></p><p>版权声明: 转载请注明出处(必须保留作者署名及链接)</p></blockquote></div><div class="tags"><a href="/blog/tags/Operating-System/">Operating System</a><a href="/blog/tags/System-Network/">System &amp; Network</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/blog/2019/11/20/Computing-Theory/" class="pre">Computing Theory Notes</a><a href="/blog/2019/11/19/ComputerNetwork-Review-Notes/" class="next">ComputerNetwork Notes</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#计算机操作系统学习-amp-复习笔记"><span class="toc-text">计算机操作系统学习&amp;复习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一章-绪论"><span class="toc-text">第一章 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-操作系统在计算机中的地位"><span class="toc-text">1.1 操作系统在计算机中的地位 *</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-操作系统的形成和发展（多道程序、分时技术）"><span class="toc-text">1.2 操作系统的形成和发展（多道程序、分时技术）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-操作系统的基本概念（定义、特性、资源管理的功能、应该解决的基本功能）"><span class="toc-text">1.3 操作系统的基本概念（定义、特性、资源管理的功能、应该解决的基本功能）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-操作系统的基本类型"><span class="toc-text">1.4 操作系统的基本类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-操作系统采用的技术"><span class="toc-text">1.5 操作系统采用的技术 *</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二章-操作系统的结构和硬件支持"><span class="toc-text">第二章 操作系统的结构和硬件支持</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-操作系统虚拟机"><span class="toc-text">2.1 操作系统虚拟机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-操作系统组织结构"><span class="toc-text">2.2 操作系统组织结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-处理机的态"><span class="toc-text">2.3 处理机的态 *</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-中断及其处理"><span class="toc-text">2.4 中断及其处理 *</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三章-操作系统的用户接口"><span class="toc-text">第三章 操作系统的用户接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-用户工作环境"><span class="toc-text">3.1 用户工作环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-操作系统的用户接口及分类"><span class="toc-text">3.2 操作系统的用户接口及分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-系统功能调用及其实现技术"><span class="toc-text">3.3 系统功能调用及其实现技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-linux系统调用功能的实现"><span class="toc-text">3.5 linux系统调用功能的实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第四章-进程及进程管理"><span class="toc-text">第四章 进程及进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-并发进程及其特点"><span class="toc-text">4.1 并发进程及其特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-进程定义"><span class="toc-text">4.2.1 进程定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-进程状态及其变迁"><span class="toc-text">4.2.2 进程状态及其变迁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-进程控制块及进程队列"><span class="toc-text">4.2.3 进程控制块及进程队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-进程控制"><span class="toc-text">4.3 进程控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-2-进程互斥的概念"><span class="toc-text">4.4.2 进程互斥的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-3-进程同步的概念"><span class="toc-text">4.4.3 进程同步的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-同步机构"><span class="toc-text">4.5 同步机构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-锁、上锁、开锁"><span class="toc-text">4.5.1 锁、上锁、开锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-信号等的PV操作"><span class="toc-text">4.5.2 信号等的PV操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-进程互斥与同步的实现"><span class="toc-text">4.6 进程互斥与同步的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-1-用上锁原语和开锁原语实现进程互斥"><span class="toc-text">4.6.1 用上锁原语和开锁原语实现进程互斥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-2-用信号灯的P、V操作实现互斥"><span class="toc-text">4.6.2 用信号灯的P、V操作实现互斥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-3-进程同步的实现"><span class="toc-text">4.6.3 进程同步的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-4-生产者和消费者"><span class="toc-text">4.6.4 生产者和消费者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-进程通信-IPC"><span class="toc-text">4.7 进程通信(IPC)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-2-进程通信的方式"><span class="toc-text">4.7.2 进程通信的方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-8-线程的概念及特点"><span class="toc-text">4.8 线程的概念及特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-9-操作系统的并发机制实例"><span class="toc-text">4.9 操作系统的并发机制实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-10-进程调度"><span class="toc-text">4.10 进程调度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第五章-资源分配与调度"><span class="toc-text">第五章 资源分配与调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-资源管理概述"><span class="toc-text">5.1 资源管理概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-资源管理的机制和策略"><span class="toc-text">5.2 资源管理的机制和策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-死锁"><span class="toc-text">5.3 死锁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第六章-主存管理"><span class="toc-text">第六章 主存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-主存管理概述"><span class="toc-text">6.1 主存管理概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-主存管理功能"><span class="toc-text">6.2 主存管理功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-分区存储管理"><span class="toc-text">6.3 分区存储管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-页式存储管理"><span class="toc-text">6.4 页式存储管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-段式及段页式存储管理"><span class="toc-text">6.5 段式及段页式存储管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第七章-设备管理（I-O管理）"><span class="toc-text">第七章 设备管理（I/O管理）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-设备管理概述"><span class="toc-text">7.1 设备管理概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-缓冲技术"><span class="toc-text">7.2 缓冲技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-设备分配"><span class="toc-text">7.3 设备分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4-输入-输出控制"><span class="toc-text">7.4 输入/输出控制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第八章-文件系统"><span class="toc-text">第八章 文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-1-文件系统概述"><span class="toc-text">8.1 文件系统概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-文件的逻辑结构和存取方法"><span class="toc-text">8.2 文件的逻辑结构和存取方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-3-文件的物理结构"><span class="toc-text">8.3 文件的物理结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-4-文件存储空间的管理"><span class="toc-text">8.4 文件存储空间的管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-5-文件目录"><span class="toc-text">8.5 文件目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-6-共享与安全"><span class="toc-text">8.6 共享与安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-7-文件操作与文件备份"><span class="toc-text">8.7 文件操作与文件备份</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8。8-UNIX文件系统的主要结构及实现"><span class="toc-text">8。8 UNIX文件系统的主要结构及实现</span></a></li></ol></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/2019/12/06/machine-learning/">Machine Learning Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/20/Computing-Theory/">Computing Theory Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/19/OpeartingSystem-Notes/">OpeartingSystem Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/19/ComputerNetwork-Review-Notes/">ComputerNetwork Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/18/QT%20creator%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8ETCP%E4%BC%A0%E8%BE%93%E8%AF%95%E9%AA%8C/">QT creator的使用与TCP传输试验</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/18/hexo%E5%8D%9A%E5%AE%A2%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%A9%E7%94%A8hexo%E5%86%99%E6%96%87%E7%AB%A0/">Build My Personal Blog with Github and Hexo</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CS-Courses/">CS Courses</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">hexo搭建属于自己的博客</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/hexo%E6%8A%80%E6%9C%AF/">hexo技术</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/blog/tags/Formal-language-and-Automata/" style="font-size: 15px;">Formal language and Automata</a> <a href="/blog/tags/Operating-System/" style="font-size: 15px;">Operating System</a> <a href="/blog/tags/System-Network/" style="font-size: 15px;">System & Network</a> <a href="/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a> <a href="/blog/tags/hexo%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF/" style="font-size: 15px;">hexo相关技术</a> <a href="/blog/tags/markdown%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 15px;">markdown的使用</a> <a href="/blog/tags/AI/" style="font-size: 15px;">AI</a> <a href="/blog/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/blog/tags/Computer-Network/" style="font-size: 15px;">Computer Network</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a><span class="archive-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/blog/baidusitemap.xml">网站地图</a> |  <a href="/blog/atom.xml">订阅本站</a> |  <a href="/blog/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/blog/." rel="nofollow">Waylon Ding.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/blog/js/search.json.js?v=2.0.4"></script><script type="text/javascript" src="/blog/js/toctotop.js?v=2.0.4" async></script><link rel="stylesheet" type="text/css" href="/blog/share/css/share.css"><script type="text/javascript" src="/blog/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/blog/share/js/qrcode.js" charset="utf-8"></script></body></html>
+<h3 id="计算机组成原理：总线和I-O"><a href="#计算机组成原理：总线和I-O" class="headerlink" title="计算机组成原理：总线和I/O"></a>计算机组成原理：总线和I/O</h3><h4 id="第七章-系统总线"><a href="#第七章-系统总线" class="headerlink" title="第七章 系统总线"></a>第七章 系统总线</h4><ul>
+<li>总线分类<ul>
+<li>数量：并行传输总线、串行传输总线</li>
+<li>方向：单向、双向</li>
+<li>速度：高速、低速</li>
+<li>时序：同步、异步</li>
+<li>连接部分：片内总线、外部总线、系统总线、I/O总线、处理器总线</li>
+</ul>
+</li>
+<li>按照连接部件分：存储总线（短距离高速总线）、系统总线（最重要、连接存储和I/O）、I/O总线（慢）</li>
+<li>总线组成：地址总线（双向）、数据总线（单向）、控制总线（可能双向）、电源和地线</li>
+<li>总线性能评价：总线带宽（总线本身能达到的最高传输速率B/s）= 总线宽度*总线传输频率（不是时钟频率）<br><img src="https://s2.ax1x.com/2019/12/11/Qrfmmq.png" alt="Qrfmmq.png"></li>
+<li>总线事物：从请求总线到完成总线使用的操作序列<ul>
+<li>请求事物、裁决操作、地址传输、数据传输、总线释放</li>
+<li>总线传输周期：总线上完成一次总线事物的时间，包括申请、寻址、传输、结束</li>
+<li>突发（Brust）传送事物（成组传送）：多个数据阶段，传输过程不释放总线</li>
+</ul>
+</li>
+<li>总线的连接方式：单、双、三<br><img src="https://s2.ax1x.com/2019/12/11/QrfHun.png" alt="QrfHun.png"><ul>
+<li>总线结构和系统性能的关系：最大存储容量（单总线内存要为外设保留一些地址）、指令系统（单总线无I/O指令，双总线有）、吞吐量（三总线大于单总线）</li>
+</ul>
+</li>
+<li>信息传送方式<ul>
+<li>串行传送、并行传送、分时传送<br><img src="https://s2.ax1x.com/2019/12/11/QrhZCD.png" alt="QrhZCD.png">  </li>
+<li>发展趋势：并行传输（距离受限、线间串绕严重）、串行传输（传输距离长、无串扰现象）、随着总线品；v的增加，逐渐转向串行</li>
+<li>分时传送：总线复用、连在总线上的部件分时使用总线</li>
+</ul>
+</li>
+<li>总线仲裁（总线使用进行合理分配与管理，部件向控制器发信号、优先级决定顺序）与定时 <ul>
+<li>集中式总线仲裁、分布式仲裁<br><img src="https://s2.ax1x.com/2019/12/11/Qr4Yo6.png" alt="Qr4Yo6.png"><br>（计数器定时方式中的log2n指的是地址计数线要用log2n根线）  </li>
+<li>传输过程：总线申请（总线仲裁）（设备提出请求，总控确定将下一个使用权分配给谁）、地址阶段（总线寻址）（相关命令，启动相应部件）、数据阶段（数据传输）、结束阶段（撤销总线请求有关信息、让出总线、控制器重新获得使用权）</li>
+<li>总线定时<ul>
+<li>同步方式（快速设备）：无应答定时，事件在时钟信号前沿，大多数时间只占用一个时钟周期（按照最慢设备定时，适合总线长度短、各功能模块存取时间相差不大情况）<br>给出读控制信号，给出有效数据，时钟来临的时候给出事件</li>
+<li>异步方式（慢速设备）：应答定时，后一事件时刻取决于前一事件的出现，应答和互锁机制（总周期长可变，快慢连接在同一总线上）<br>给出读控制信号，存在有效数据，马上给出响应信号</li>
+<li>半同步方式（结合同步和异步的特点，同步时钟的控制下进行采样和应答）<br>各操作间的时间间隔可以变化，但是仅允许为公共周期的整数倍</li>
+</ul>
+</li>
+<li>习题<br><img src="https://s2.ax1x.com/2019/12/11/QroJwn.png" alt="QroJwn.png">  </li>
+</ul>
+</li>
+<li>常见总线：ISA、PCI（不受CPU和结构的限制、同步时序、集中式仲裁、兼容性好）、AGP（为了消除外围设备的连接瓶颈、高速图形接口）<ul>
+<li>当今的PC（）</li>
+<li>下一代技术：PCI-X局部总线（总线瓶颈问题）、Compact PCI局部总线（无源总线底板）、NGIO（下一代总线、I/O总线、处理器和I/O分离）、PCI-EXPRESS（设备间的点对点的串行连接，独占占用）、IndiniBand</li>
+<li>USB（通用串行总线）：即插即用、四线电缆，两根用来传输数据的串行通道、两根为下游设备提供电源。采用级联星型拓扑：主机、HUB、功能设备</li>
+</ul>
+</li>
+<li>数据传输方式<ul>
+<li>控制传输类型、等时传输类型、中断传输类型（数据量小对时间响应敏感，要求马上响应）、数据块传输类型（外设（打印机、扫描仪、数码相机）和主机间的数据量巨大，USB在满足带宽的情况下才进行块数据的传输）<h4 id="第八章-输入输出原理"><a href="#第八章-输入输出原理" class="headerlink" title="第八章 输入输出原理"></a>第八章 输入输出原理</h4></li>
+</ul>
+</li>
+<li>I/O系统=外部设备+接口部件+总线+管理软件</li>
+<li>输入输出过程<ul>
+<li>输入过程（地址放置在总线选择设备、等待输入设备数据变为有效、从数据总线读入数据）</li>
+<li>输出过程（地址放置在总线选择设备、数据放置在总线上、输出设备认为有效取走数据）</li>
+</ul>
+</li>
+<li>设备定时：直接输入输出（速度极慢或简单的外围设备）、异步定时（慢速或者中速的外围设备）、同步定时（高速外围设备）</li>
+<li>输入输出方式：无条件I/O(输入输出时刻准备着)、程序控制I/O、中断I/O、DMA、通道方式、I/O处理机<ul>
+<li>程序控制I/O（程序查询方式）：启动设备、反复询问查询设备状态、传输单个数据、重复上述步骤直到传输完毕。（反复查询设别状态占用较多CPU时间，系统效率低，CPU占用率取决于查询频率）</li>
+<li>程序I/O（程序中断过程）：启动设备、挂起当前进程、调度主程序运行，外设准备数据、数据准备完成，外设以中断方式主动告知CPU、COU中断主程序，转向设备中断服务子程序、中断服务（一般传输一个字），唤醒等待进程、返回主程序。（提高CPU的使用效率：主动告知避免反复查询，CPU占用：中断服务子程序运行时间+中断开销、适合随机出现的服务、需要专门的硬件）</li>
+</ul>
+</li>
+<li>直接访问DMA方式<ul>
+<li>中断不足：一次中断少量数据，CPU开销较大、不适合成组交换。</li>
+<li>使用硬件执行I/O交换：准备阶段和结束阶段要占用CPU、传输阶段DMAC从CPU接管总线，数据交换无需CPU干预，内存和外设交换，节约了中断开销。（这也需要更多的硬件）</li>
+</ul>
+</li>
+<li>通道访问：DMA的进一步发展——数据的传输方向、内存起始地址、传送的数据块长度都由独立于CPU的通道进行控制：有特殊处理功能的处理器IOP、外设统一管理和DMA操作、更多硬件代价、提高CPU的工作效率（通道执行通道程序完成I/O，由通道指令组成）</li>
+<li>中断<ul>
+<li>目的：避免重复查询外设状态，主机和外设并行工作、工作效率提高</li>
+<li>内中断（自愿中断——指令中断、强迫中断——硬件故障，软件出错）、外中断（强迫中断）——可屏蔽中断、不可屏蔽中断</li>
+<li>子程序和中断服务子程序——子程序在特定位置显式调用、后者随机调用、现场不同</li>
+<li>中断优先级问题、中断仲裁、中断嵌套（注意：执行某设备中断服务子程序，CPU的优先级集就和该设备的优先级一样）（仲裁方式：链式查询、独立请求、分组链式结构）（二维优先级）</li>
+<li>中断屏蔽：响应优先级（硬件线路已经规定设备优先级）、处理优先级（实际处理的先后次序，如果不使用屏蔽，响应次序=处理次序）、中断屏蔽技术动态改变各个设备所处于的优先级<ul>
+<li>中断请求寄存器IR（1表示响应外设发出了中断请求）</li>
+<li>中断屏蔽寄存器INM（1为屏蔽，每个设备都有自己的中断屏蔽字，不可屏蔽中断不受INM的控制）</li>
+<li>中断允许触发器IE</li>
+<li>屏蔽码：控制设备接口的屏蔽触发器，改变处理次序（运行某个设备的时候载入对应的屏蔽码）：<br><img src="https://s2.ax1x.com/2019/12/11/Qr659A.png" alt="Qr659A.png"></li>
+<li>单级中断与多级中断<ul>
+<li>单级中断：所有一个级，离CPU近的优先级高，CPU处理某个中断时候，不响应其他中断。</li>
+<li>多级中断：中断嵌套+优先级高的中断可以打断优先级低的</li>
+</ul>
+</li>
+<li>中断识别<ul>
+<li>向量中断：硬件，查地址表获得服务程序入口。中断向量法：（向量表中记录A的入口AA，地址为AA，PUSH，执行中断处理程序，执行完后IRET）</li>
+<li>非向量中断：查询程序。（保护寄存器，查询是否R=1，执行服务程序，恢复寄存器，中断返回）<br><img src="https://s2.ax1x.com/2019/12/11/Qrg6oD.png" alt="Qrg6oD.png"></li>
+</ul>
+</li>
+<li>习题<br><img src="https://s2.ax1x.com/2019/12/11/Qrc4VU.png" alt="Qrc4VU.png"><br><img src="https://s2.ax1x.com/2019/12/11/QrcWrV.png" alt="QrcWrV.png"></li>
+<li>中断响应的条件：IE允许，INM=0，无更高优先级的DMA请求，指令已经执行完最后一个机器周期</li>
+<li>保护现场，恢复现场（寄存器，EPC，屏蔽字，缺页中的断点）、中断过程由软硬件结合完成。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DMA方式<ul>
+<li>处理DMA控制的时候的CPU冲突和资源冲突<ul>
+<li>停用CPU使用内存：DMA传输CPU停止使用内存、数据结束DMA交还使用权、DMA传输CPU等待（外设传输两个数据的时间间隔大于存储周期，内存未被充分使用）</li>
+<li>DMA和CPU交替使用主存：CPU工作周期分为DMA访问内存、CPU访问内存两部分（省去了主存使用权的移交过程）</li>
+<li>周期挪用法：DMA访内的时候，CPU暂停一个或者多个存储周期，一个数据传送结束后，CPU继续运行。CPU现场没有变动，仅延缓了指令的执行，如果发生了内存冲突，则DMA优先访问。</li>
+</ul>
+</li>
+<li>操作过程：CPU向DMA发送必要的参数、传送一批数据（每传送一个数据，一个DMA请求）（数据缓冲地址指针加一、计数器减一）、正常结束（数据传送完毕），非正常结束（DMA传输故障），结束阶段DMA向主机发出中断请求，CPU执行中断服务程序（查询DMA接口状态，根据状态进行不同处理）一个数据块的传递过程如下：<br><a href="https://imgse.com/i/QrapdI" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/12/11/QrapdI.md.png" alt="QrapdI.md.png"></a></li>
+<li>有关于DMA的习题如下：<br><img src="https://s2.ax1x.com/2019/12/11/QraZLj.png" alt="QraZLj.png"><br><img src="https://s2.ax1x.com/2019/12/11/QraQYV.png" alt="QraQYV.png"></li>
+</ul>
+</li>
+<li>通道方式<ul>
+<li>找出一种技术，使DMA技术被更多设备共享（节省DMA初始化的时间）</li>
+<li>设置专用的输入输出处理机（通道），分担输入输出管理的全部或者大部分工作。</li>
+<li>层次性的I/O：一个主机可以连接多个通道、一个通道可以管理多个设备控制器、一个设备控制器可以控制多个设备<ul>
+<li>字节多路通道（以字节为段位进行传输、宏观上并行）<br><img src="https://s2.ax1x.com/2019/12/11/Qrd84P.png" alt="Qrd84P.png">  <ul>
+<li>适合慢速设备不适合高速设备，高速设备传输两个字节间的空闲很短</li>
+</ul>
+</li>
+<li>选择通道（能连接多个设备但是不能同时工作，只有一个自通道适合大批量数据的高速传送，制定数据传输玩采薇其他设备服务）<br><img src="https://s2.ax1x.com/2019/12/11/QrdTC6.png" alt="QrdTC6.png"></li>
+<li>数组多路通道（硬盘启动后的磁盘等待时间很长，利用这段时间，将字节多路和选择通道折中，称为数组多路通道）（多个设备以数据组（快）为单位交叉使用通道，设备占用通道时，连续传送一组数据没然后让出通道使用权）（一次只能与和一个设备进行传输型工作，轮转使用）<ul>
+<li>传输率高，硬件复杂度高</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-copyright"><blockquote><p>原文作者: Waylon Ding</p><p>原文链接: <a href="/blog/www.waylonding.cn/blog/2019/11/19/OpeartingSystem-Notes/">www.waylonding.cn/blog/2019/11/19/OpeartingSystem-Notes/</a></p><p>版权声明: 转载请注明出处(必须保留作者署名及链接)</p></blockquote></div><div class="tags"><a href="/blog/tags/Operating-System/">Operating System</a><a href="/blog/tags/System-Network/">System &amp; Network</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/blog/2019/11/20/Computing-Theory/" class="pre">Computing Theory Notes</a><a href="/blog/2019/11/19/ComputerNetwork-Review-Notes/" class="next">ComputerNetwork Notes</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#计算机操作系统学习-amp-复习笔记"><span class="toc-text">计算机操作系统学习&amp;复习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一章-绪论"><span class="toc-text">第一章 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-操作系统在计算机中的地位"><span class="toc-text">1.1 操作系统在计算机中的地位 *</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-操作系统的形成和发展（多道程序、分时技术）"><span class="toc-text">1.2 操作系统的形成和发展（多道程序、分时技术）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-操作系统的基本概念（定义、特性、资源管理的功能、应该解决的基本功能）"><span class="toc-text">1.3 操作系统的基本概念（定义、特性、资源管理的功能、应该解决的基本功能）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-操作系统的基本类型"><span class="toc-text">1.4 操作系统的基本类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-操作系统采用的技术"><span class="toc-text">1.5 操作系统采用的技术 *</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二章-操作系统的结构和硬件支持"><span class="toc-text">第二章 操作系统的结构和硬件支持</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-操作系统虚拟机"><span class="toc-text">2.1 操作系统虚拟机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-操作系统组织结构"><span class="toc-text">2.2 操作系统组织结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-处理机的态"><span class="toc-text">2.3 处理机的态 *</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-中断及其处理"><span class="toc-text">2.4 中断及其处理 *</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三章-操作系统的用户接口"><span class="toc-text">第三章 操作系统的用户接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-用户工作环境"><span class="toc-text">3.1 用户工作环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-操作系统的用户接口及分类"><span class="toc-text">3.2 操作系统的用户接口及分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-系统功能调用及其实现技术"><span class="toc-text">3.3 系统功能调用及其实现技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-linux系统调用功能的实现"><span class="toc-text">3.5 linux系统调用功能的实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第四章-进程及进程管理"><span class="toc-text">第四章 进程及进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-并发进程及其特点"><span class="toc-text">4.1 并发进程及其特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-进程定义"><span class="toc-text">4.2.1 进程定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-进程状态及其变迁"><span class="toc-text">4.2.2 进程状态及其变迁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-进程控制块及进程队列"><span class="toc-text">4.2.3 进程控制块及进程队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-进程控制"><span class="toc-text">4.3 进程控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-2-进程互斥的概念"><span class="toc-text">4.4.2 进程互斥的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-3-进程同步的概念"><span class="toc-text">4.4.3 进程同步的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-同步机构"><span class="toc-text">4.5 同步机构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-锁、上锁、开锁"><span class="toc-text">4.5.1 锁、上锁、开锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-信号等的PV操作"><span class="toc-text">4.5.2 信号等的PV操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-进程互斥与同步的实现"><span class="toc-text">4.6 进程互斥与同步的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-1-用上锁原语和开锁原语实现进程互斥"><span class="toc-text">4.6.1 用上锁原语和开锁原语实现进程互斥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-2-用信号灯的P、V操作实现互斥"><span class="toc-text">4.6.2 用信号灯的P、V操作实现互斥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-3-进程同步的实现"><span class="toc-text">4.6.3 进程同步的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-4-生产者和消费者"><span class="toc-text">4.6.4 生产者和消费者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-进程通信-IPC"><span class="toc-text">4.7 进程通信(IPC)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-2-进程通信的方式"><span class="toc-text">4.7.2 进程通信的方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-8-线程的概念及特点"><span class="toc-text">4.8 线程的概念及特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-9-操作系统的并发机制实例"><span class="toc-text">4.9 操作系统的并发机制实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-10-进程调度"><span class="toc-text">4.10 进程调度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第五章-资源分配与调度"><span class="toc-text">第五章 资源分配与调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-资源管理概述"><span class="toc-text">5.1 资源管理概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-资源管理的机制和策略"><span class="toc-text">5.2 资源管理的机制和策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-死锁"><span class="toc-text">5.3 死锁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第六章-主存管理"><span class="toc-text">第六章 主存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-主存管理概述"><span class="toc-text">6.1 主存管理概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-主存管理功能"><span class="toc-text">6.2 主存管理功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-分区存储管理"><span class="toc-text">6.3 分区存储管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-页式存储管理"><span class="toc-text">6.4 页式存储管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-段式及段页式存储管理"><span class="toc-text">6.5 段式及段页式存储管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第七章-设备管理（I-O管理）"><span class="toc-text">第七章 设备管理（I/O管理）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-设备管理概述"><span class="toc-text">7.1 设备管理概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-缓冲技术"><span class="toc-text">7.2 缓冲技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-设备分配"><span class="toc-text">7.3 设备分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4-输入-输出控制"><span class="toc-text">7.4 输入/输出控制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第八章-文件系统"><span class="toc-text">第八章 文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-1-文件系统概述"><span class="toc-text">8.1 文件系统概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-文件的逻辑结构和存取方法"><span class="toc-text">8.2 文件的逻辑结构和存取方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-3-文件的物理结构"><span class="toc-text">8.3 文件的物理结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-4-文件存储空间的管理"><span class="toc-text">8.4 文件存储空间的管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-5-文件目录"><span class="toc-text">8.5 文件目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-6-共享与安全"><span class="toc-text">8.6 共享与安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-7-文件操作与文件备份"><span class="toc-text">8.7 文件操作与文件备份</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8。8-UNIX文件系统的主要结构及实现"><span class="toc-text">8。8 UNIX文件系统的主要结构及实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算机组成原理：总线和I-O"><span class="toc-text">计算机组成原理：总线和I/O</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第七章-系统总线"><span class="toc-text">第七章 系统总线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第八章-输入输出原理"><span class="toc-text">第八章 输入输出原理</span></a></li></ol></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/2019/12/06/machine-learning/">Machine Learning Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/20/Computing-Theory/">Computing Theory Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/19/OpeartingSystem-Notes/">OpeartingSystem Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/19/ComputerNetwork-Review-Notes/">ComputerNetwork Notes</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/18/QT%20creator%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8ETCP%E4%BC%A0%E8%BE%93%E8%AF%95%E9%AA%8C/">QT creator的使用与TCP传输试验</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2019/11/18/hexo%E5%8D%9A%E5%AE%A2%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%A9%E7%94%A8hexo%E5%86%99%E6%96%87%E7%AB%A0/">Build My Personal Blog with Github and Hexo</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/CS-Courses/">CS Courses</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">hexo搭建属于自己的博客</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/hexo%E6%8A%80%E6%9C%AF/">hexo技术</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/blog/tags/Formal-language-and-Automata/" style="font-size: 15px;">Formal language and Automata</a> <a href="/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a> <a href="/blog/tags/hexo%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF/" style="font-size: 15px;">hexo相关技术</a> <a href="/blog/tags/markdown%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 15px;">markdown的使用</a> <a href="/blog/tags/AI/" style="font-size: 15px;">AI</a> <a href="/blog/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/blog/tags/Operating-System/" style="font-size: 15px;">Operating System</a> <a href="/blog/tags/System-Network/" style="font-size: 15px;">System & Network</a> <a href="/blog/tags/Computer-Network/" style="font-size: 15px;">Computer Network</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/">2019</a><span class="archive-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/blog/baidusitemap.xml">网站地图</a> |  <a href="/blog/atom.xml">订阅本站</a> |  <a href="/blog/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/blog/." rel="nofollow">Waylon Ding.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/blog/js/search.json.js?v=2.0.4"></script><script type="text/javascript" src="/blog/js/toctotop.js?v=2.0.4" async></script><link rel="stylesheet" type="text/css" href="/blog/share/css/share.css"><script type="text/javascript" src="/blog/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/blog/share/js/qrcode.js" charset="utf-8"></script></body></html>
